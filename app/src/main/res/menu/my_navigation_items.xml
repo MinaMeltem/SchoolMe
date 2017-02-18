@@ -7,6 +7,7 @@
         android:title="Home"
         android:icon="@drawable/ic_home_black_24dp" />
     <item android:id="@+id/favorites_menu_item"
+        android:enabled="true"
         android:title="Favorites"
         android:icon="@drawable/ic_favorite_black_24dp" />
 </menu>
