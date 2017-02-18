@@ -43,16 +43,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void inflateProfileFragment() {
-        getSupportFragmentManager().beginTransaction().add(R.id.activity_main, new ProfileFragment()).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.frame_layout, new ProfileFragment()).commit();
     }
 
     private void inflateHomeFragment() {
-        getSupportFragmentManager().beginTransaction().add(R.id.activity_main, new HomeFragment()).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.frame_layout, new HomeFragment()).commit();
     }
 
 
     private void inflateFavoritesFragment() {
-        getSupportFragmentManager().beginTransaction().add(R.id.activity_main, new FavoritesFragment()).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.frame_layout, new FavoritesFragment()).commit();
+
     }
 
 }
