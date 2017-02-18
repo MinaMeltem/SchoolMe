@@ -7,21 +7,9 @@ import java.util.List;
  */
 
 public class SchoolsResponse {
-
     private List<School> schoolList;
-
-    public SchoolsResponse() {
-    }
-
-    public SchoolsResponse(List<School> schoolList) {
-        this.schoolList = schoolList;
-    }
 
     public List<School> getSchoolList() {
         return schoolList;
-    }
-
-    public void setSchoolList(List<School> schoolList) {
-        this.schoolList = schoolList;
     }
 }
