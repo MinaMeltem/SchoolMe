@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 
 public class FavoritesFragment extends Fragment {
 
-
     @Override
     public View onCreateView(LayoutInflater inflater,ViewGroup parent, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.fragment_favorites, parent, false);
