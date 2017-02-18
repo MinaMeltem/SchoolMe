@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "333055611823",
+    "firebase_url": "https://schoolme-23e6d.firebaseio.com",
+    "project_id": "schoolme-23e6d",
+    "storage_bucket": "schoolme-23e6d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:333055611823:android:0b8be6872ff87392",
+        "android_client_info": {
+          "package_name": "nyc.c4q.ashiquechowdhury.schoolme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "333055611823-cq2ntvmfger4mcgdcpniopaqa3nff95k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "nyc.c4q.ashiquechowdhury.schoolme",
+            "certificate_hash": "570EF47A22B58357695E36AA3826601F93124350"
+          }
+        },
+        {
+          "client_id": "333055611823-t8195g0532cn4v2hhbf5lrsr8vrsjr24.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNuW_LFIBhZLt6leX4Vjns7NkuOciKsto"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "333055611823-t8195g0532cn4v2hhbf5lrsr8vrsjr24.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
