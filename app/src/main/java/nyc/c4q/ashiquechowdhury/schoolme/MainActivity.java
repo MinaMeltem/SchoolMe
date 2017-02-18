@@ -38,22 +38,19 @@ public class MainActivity extends AppCompatActivity {
                         return false;
                     }
                 }
-
         );
     }
 
     private void inflateProfileFragment() {
-        getSupportFragmentManager().beginTransaction().add(R.id.frame_layout, new ProfileFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new ProfileFragment()).commit();
     }
 
     private void inflateHomeFragment() {
-        getSupportFragmentManager().beginTransaction().add(R.id.frame_layout, new HomeFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new HomeFragment()).commit();
     }
 
-
     private void inflateFavoritesFragment() {
-        getSupportFragmentManager().beginTransaction().add(R.id.frame_layout, new FavoritesFragment()).commit();
-
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new FavoritesFragment()).commit();
     }
 
 }

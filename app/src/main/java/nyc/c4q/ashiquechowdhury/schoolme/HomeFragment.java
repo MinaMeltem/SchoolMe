@@ -14,9 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 import nyc.c4q.ashiquechowdhury.schoolme.swipe.SwipeStack;
 
-public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListener, View.OnClickListener {
+public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListener {
 
-    private FloatingActionButton fab;
     private ArrayList<String> data; // CHANGE TO MODEL
     private SwipeStack swipeStack;
     private SwipeStackAdapter swipeAdapter;
@@ -35,8 +34,6 @@ public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListe
 
     public void setViews() {
         swipeStack = (SwipeStack) getView().findViewById(R.id.swipeStack);
-        fab = (FloatingActionButton) getView().findViewById(R.id.fabAdd);
-        fab.setOnClickListener(this);
         data = new ArrayList<>();
         swipeAdapter = new SwipeStackAdapter(data);
         swipeStack.setAdapter(swipeAdapter);
@@ -47,14 +44,6 @@ public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListe
     private void fillWithTestData() {
         for (int x = 0; x < 5; x++) {
             data.add(getString(R.string.school_text) + " " + (x + 1));
-        }
-    }
-
-    @Override
-    public void onClick(View v) {
-        if (v.equals(fab)) {
-            data.add(getString(R.string.dummy_fab));
-            swipeAdapter.notifyDataSetChanged();
         }
     }
 
