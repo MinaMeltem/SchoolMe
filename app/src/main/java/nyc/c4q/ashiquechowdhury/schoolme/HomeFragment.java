@@ -57,13 +57,10 @@ public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListe
     @Override
     public void onViewSwipedToLeft(int position) {
         String swipedElement = swipeAdapter.getItem(position);
-        Toast.makeText(getContext(), getString(R.string.view_swiped_left, swipedElement),
-                Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onStackEmpty() {
-        Toast.makeText(getContext(), R.string.stack_empty, Toast.LENGTH_SHORT).show();
     }
 
     public class SwipeStackAdapter extends BaseAdapter {
@@ -97,8 +94,8 @@ public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListe
                 convertView = getActivity().getLayoutInflater().inflate(R.layout.school_card, parent, false);
             }
 
-            TextView textViewCard = (TextView) convertView.findViewById(R.id.borough);
-            textViewCard.setText(data.get(position));
+//            TextView textViewCard = (TextView) convertView.findViewById(R.id.borough);
+//            textViewCard.setText(data.get(position));
             return convertView;
         }
     }
