@@ -1,7 +1,5 @@
 package nyc.c4q.ashiquechowdhury.schoolme.model;
 
-import io.realm.RealmObject;
-
 /**
  * Created by ashiquechowdhury on 2/18/17.
  */
