@@ -6,10 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * Created by ashiquechowdhury on 2/18/17.
- */
-
 public class FavoritesFragment extends Fragment {
 
     @Override
@@ -22,6 +18,4 @@ public class FavoritesFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState){
 
     }
-
-
 }
