@@ -3,4 +3,16 @@
     <string name="user_profile" />
     <string name="homescreen">homescreen</string>
     <string name="favorites">favorites</string>
+
+    <string name="swipe_left">Swipe left</string>
+    <string name="swipe_right">Swipe right</string>
+    <string name="view_swiped_left">Disliked!</string>
+    <string name="view_swiped_right">Added to Favorites!</string>
+    <string name="school_text">School</string>
+    <string name="dummy_fab">Added School</string>
+
+    <string name="reset">Reset stack</string>
+    <string name="stack_reset">Stack reset!</string>
+    <string name="stack_empty">No more Schools!</string>
+    <string name="github">View on GitHub</string>
 </resources>

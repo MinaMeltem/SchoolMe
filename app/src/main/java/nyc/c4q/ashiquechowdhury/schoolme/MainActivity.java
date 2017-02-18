@@ -9,5 +9,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        inflateFragment();
     }
+
+    void inflateFragment(){
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.frame_layout, new SwipeViewFragment())
+                .commit();
+    }
+
 }
