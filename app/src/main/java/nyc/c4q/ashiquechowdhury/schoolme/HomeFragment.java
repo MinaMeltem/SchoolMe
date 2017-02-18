@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import nyc.c4q.ashiquechowdhury.schoolme.swipe.SwipeStack;
 
-public class SwipeViewFragment extends Fragment implements SwipeStack.SwipeStackListener, View.OnClickListener {
+public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListener, View.OnClickListener {
 
     private FloatingActionButton fab;
     private ArrayList<String> data; // CHANGE TO MODEL
