@@ -2,7 +2,7 @@ package nyc.c4q.ashiquechowdhury.schoolme.Network;
 
 import java.util.List;
 
-import nyc.c4q.ashiquechowdhury.schoolme.Model.School;
+import nyc.c4q.ashiquechowdhury.schoolme.model.School;
 import retrofit2.Call;
 import retrofit2.http.GET;
 

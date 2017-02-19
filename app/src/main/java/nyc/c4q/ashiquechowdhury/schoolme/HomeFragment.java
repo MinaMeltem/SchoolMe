@@ -2,7 +2,6 @@ package nyc.c4q.ashiquechowdhury.schoolme;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +9,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import nyc.c4q.ashiquechowdhury.schoolme.swipe.SwipeStack;
 
 public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListener {

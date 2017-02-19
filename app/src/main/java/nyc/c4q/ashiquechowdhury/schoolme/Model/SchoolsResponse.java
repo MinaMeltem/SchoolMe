@@ -1,4 +1,4 @@
-package nyc.c4q.ashiquechowdhury.schoolme.Model;
+package nyc.c4q.ashiquechowdhury.schoolme.model;
 
 import java.util.List;
 

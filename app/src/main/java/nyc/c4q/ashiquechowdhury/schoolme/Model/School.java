@@ -1,4 +1,4 @@
-package nyc.c4q.ashiquechowdhury.schoolme.Model;
+package nyc.c4q.ashiquechowdhury.schoolme.model;
 
 /**
  * Created by meltemyildirim on 2/18/17.
