@@ -2,7 +2,7 @@ package nyc.c4q.ashiquechowdhury.schoolme;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,7 +46,7 @@ public class FavoritesFragment extends Fragment {
 //        realm.commitTransaction();
 
         RealmResults<SchoolDbModel> results = realm.where(SchoolDbModel.class).findAll();
-        schoolList.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        schoolList.setLayoutManager(new GridLayoutManager(view.getContext(),2));
         schoolList.setAdapter(new SchoolAdapter(results));
     }
 }
