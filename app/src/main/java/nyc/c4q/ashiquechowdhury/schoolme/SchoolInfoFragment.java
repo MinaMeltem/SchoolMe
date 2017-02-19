@@ -15,7 +15,8 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
-import nyc.c4q.ashiquechowdhury.schoolme.model.School;
+import nyc.c4q.ashiquechowdhury.schoolme.models.School;
+
 
 /**
  * Created by SACC on 2/18/17.

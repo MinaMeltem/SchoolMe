@@ -1,4 +1,4 @@
-package nyc.c4q.ashiquechowdhury.schoolme.model;
+package nyc.c4q.ashiquechowdhury.schoolme.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -67,7 +67,7 @@ public class School implements Parcelable {
 
     //Getters
 
-    protected School(Parcel in) {
+    public School(Parcel in) {
         school_name = in.readString();
         school_type = in.readString();
         addtl_info1 = in.readString();
@@ -105,6 +105,10 @@ public class School implements Parcelable {
             return new School[size];
         }
     };
+
+    public School(String s) {
+        this.school_name = s;
+    }
 
     public String getSchool_name() {
         return school_name;

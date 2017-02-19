@@ -9,7 +9,7 @@ import java.util.List;
 
 import io.realm.RealmResults;
 import nyc.c4q.ashiquechowdhury.schoolme.R;
-import nyc.c4q.ashiquechowdhury.schoolme.model.SchoolDbModel;
+import nyc.c4q.ashiquechowdhury.schoolme.models.SchoolDbModel;
 
 /**
  * Created by ashiquechowdhury on 2/18/17.

@@ -1,4 +1,4 @@
-package nyc.c4q.ashiquechowdhury.schoolme.model;
+package nyc.c4q.ashiquechowdhury.schoolme.models;
 
 import io.realm.RealmObject;
 

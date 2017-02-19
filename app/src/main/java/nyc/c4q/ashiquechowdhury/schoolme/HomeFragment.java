@@ -16,7 +16,7 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 
-import nyc.c4q.ashiquechowdhury.schoolme.model.School;
+import nyc.c4q.ashiquechowdhury.schoolme.models.School;
 import nyc.c4q.ashiquechowdhury.schoolme.swipe.SwipeStack;
 
 public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListener {
