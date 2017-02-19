@@ -24,30 +24,26 @@
             android:layout_alignParentStart="true"
             android:background="@drawable/gradient"
             android:gravity="bottom"
-            android:paddingLeft="5dp"
+            android:paddingLeft="10dp"
             android:textColor="#ffffff"
             android:textSize="30sp" />
 
-
         <TextView
             android:id="@+id/school_location"
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/school_name"
-            android:paddingLeft="5dp"
+            android:paddingLeft="10dp"
             android:textColor="#ffffff"
             android:textSize="20sp" />
 
-
         <LinearLayout
             android:id="@+id/school_enrolled_students"
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/school_location"
             android:orientation="vertical"
-            android:paddingLeft="5dp"
+            android:paddingLeft="10dp"
             android:paddingTop="10dp">
 
             <TextView
@@ -59,9 +55,8 @@
 
             <TextView
                 android:layout_width="wrap_content"
-
                 android:layout_height="wrap_content"
-                android:text="Students"
+                android:text="@string/students"
                 android:textColor="#ffffff"
                 android:textSize="10sp" />
 
@@ -71,27 +66,23 @@
         <TextView
             android:id="@+id/advanced_placement"
             android:layout_width="wrap_content"
-
             android:layout_height="wrap_content"
             android:layout_below="@+id/school_enrolled_students"
-            android:paddingLeft="5dp"
+            android:paddingLeft="10dp"
             android:paddingTop="10dp"
             android:textColor="#ffffff"
-            android:textSize="20sp" />
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/extracurricular"
             android:layout_width="wrap_content"
-
             android:layout_height="wrap_content"
             android:layout_below="@+id/advanced_placement"
-            android:paddingLeft="5dp"
+            android:paddingLeft="10dp"
             android:paddingTop="10dp"
             android:textColor="#ffffff"
-            android:textSize="20sp" />
-
+            android:textSize="15sp" />
 
     </RelativeLayout>
-
 
 </android.support.v7.widget.CardView>
