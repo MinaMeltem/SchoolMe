@@ -66,7 +66,6 @@ public class School implements Parcelable {
     //Getters
 
     public School(Parcel in) {
-
         school_name = in.readString();
         school_type = in.readString();
         addtl_info1 = in.readString();

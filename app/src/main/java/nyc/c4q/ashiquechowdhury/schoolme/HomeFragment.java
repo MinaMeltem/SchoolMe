@@ -159,7 +159,7 @@ public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListe
             advancedPlacement.setText(school.getAdvancedplacement_courses());
             extraCurricular.setText(school.getExtracurricular_activities());
 
-            schoolName.setOnClickListener(this);
+            schoolPic.setOnClickListener(this);
 
             return convertView;
         }
