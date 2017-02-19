@@ -1,8 +1,12 @@
 package nyc.c4q.ashiquechowdhury.schoolme;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.transition.Fade;
+import android.support.transition.Transition;
 import android.support.v4.app.Fragment;
+import android.transition.TransitionInflater;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +19,8 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import nyc.c4q.ashiquechowdhury.schoolme.model.School;
 import nyc.c4q.ashiquechowdhury.schoolme.swipe.SwipeStack;
 
 public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListener {
@@ -24,6 +30,7 @@ public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListe
     private SwipeStack swipeStack;
     private SwipeStackAdapter swipeAdapter;
     private ImageView schoolPic;
+    private School school;
 
     @Nullable
     @Override
@@ -72,7 +79,7 @@ public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListe
         Toast.makeText(getContext(), R.string.stack_empty, Toast.LENGTH_SHORT).show();
     }
 
-    public class SwipeStackAdapter extends BaseAdapter {
+    public class SwipeStackAdapter extends BaseAdapter implements View.OnClickListener {
 
         //ADD TPP TO LIST, CREATE MODEL
 
@@ -107,20 +114,32 @@ public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListe
             TextView tvBoroughName = (TextView) convertView.findViewById(R.id.school_location);
             TextView tvSchoolname = (TextView) convertView.findViewById(R.id.school_name);
 
-            School school = data.get(position);
+            school = data.get(position);
 
             Glide.with(getContext()).load(SCHOOL_IMAGE).into(ivSchoolname);
             tvBoroughName.setText(school.getSchoolBorough());
             tvSchoolname.setText(school.getSchoolName());
 
-            ivSchoolname.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Toast.makeText(getContext(), "YOOOO", Toast.LENGTH_SHORT).show();
-                }
-            });
+            ivSchoolname.setOnClickListener(this);
 
             return convertView;
+        }
+
+        @Override
+        public void onClick(View view) {
+            Bundle args = new Bundle();
+            args.putParcelable("SchoolObject", school);
+            args.putString("SchoolImage", SCHOOL_IMAGE);
+
+            SchoolInfoFragment schoolInfoFragment = new SchoolInfoFragment();
+            schoolInfoFragment.setArguments(args);
+
+
+            getActivity().getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.frame_layout, schoolInfoFragment)
+                    .addToBackStack(null)
+                    .commit();
         }
     }
 }
