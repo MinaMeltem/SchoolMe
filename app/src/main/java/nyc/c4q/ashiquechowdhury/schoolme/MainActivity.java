@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
                                 inflateFavoritesFragment();
                                 break;
                         }
-                        return false;
+                        return true;
                     }
                 }
         );
