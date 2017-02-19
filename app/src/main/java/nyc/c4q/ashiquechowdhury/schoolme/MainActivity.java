@@ -6,6 +6,9 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
+import io.realm.Realm;
+import nyc.c4q.ashiquechowdhury.schoolme.model.School;
+
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
 
@@ -16,6 +19,16 @@ public class MainActivity extends AppCompatActivity {
 
         setupBottomNavigation();
         inflateHomeFragment();
+
+        Realm.init(getApplicationContext());
+        Realm realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
+
+        School school = realm.createObject(School.class);
+        school.setPictureURL("http://weburbanist.com/wp-content/uploads/2009/04/orestad-high-school-1.jpg");
+        school.setSchoolName("iscoolme");
+
+        realm.commitTransaction();
     }
 
     private void setupBottomNavigation() {
@@ -43,17 +56,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void inflateProfileFragment() {
-        getSupportFragmentManager().beginTransaction().add(R.id.frame_layout, new ProfileFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new ProfileFragment()).commit();
     }
 
     private void inflateHomeFragment() {
-        getSupportFragmentManager().beginTransaction().add(R.id.frame_layout, new HomeFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new HomeFragment()).commit();
     }
 
 
     private void inflateFavoritesFragment() {
-        getSupportFragmentManager().beginTransaction().add(R.id.frame_layout, new FavoritesFragment()).commit();
-
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new FavoritesFragment()).commit();
     }
 
 }
