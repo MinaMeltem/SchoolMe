@@ -53,6 +53,8 @@ public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListe
         String swipedElement = swipeAdapter.getItem(position);
         Toast.makeText(getActivity(), getString(R.string.view_swiped_right, swipedElement),
                 Toast.LENGTH_SHORT).show();
+
+
     }
 
     @Override
@@ -61,6 +63,7 @@ public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListe
         Toast.makeText(getContext(), getString(R.string.view_swiped_left, swipedElement),
                 Toast.LENGTH_SHORT).show();
     }
+
 
     @Override
     public void onStackEmpty() {

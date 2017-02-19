@@ -14,7 +14,6 @@
         android:layout_above="@+id/bottom_navigation"
         android:id="@+id/frame_layout"
         android:paddingBottom="?actionBarSize">
-
     </FrameLayout>
 
 
@@ -23,6 +22,9 @@
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        design:itemBackground="@color/colorPrimary"
-        design:menu="@menu/my_navigation_items" />
+        design:menu="@menu/my_navigation_items"
+        android:background="#009688"
+        design:itemIconTint="#fff"
+        design:itemTextColor="#fff"
+        />
 </android.support.design.widget.CoordinatorLayout>

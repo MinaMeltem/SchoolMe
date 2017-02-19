@@ -9,9 +9,9 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-import nyc.c4q.ashiquechowdhury.schoolme.network.SchoolService;
 import nyc.c4q.ashiquechowdhury.schoolme.model.School;
 import nyc.c4q.ashiquechowdhury.schoolme.model.SchoolsResponse;
+import nyc.c4q.ashiquechowdhury.schoolme.network.SchoolService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -29,7 +29,7 @@ public class ProfileFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState){
-        retrofit();
+//        retrofit();
     }
 
     public void retrofit(){

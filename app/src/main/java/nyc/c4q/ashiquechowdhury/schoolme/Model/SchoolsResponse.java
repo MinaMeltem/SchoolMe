@@ -7,9 +7,9 @@ import java.util.List;
  */
 
 public class SchoolsResponse {
-    private List<School> schoolList;
+    private List<SchoolDbModel> schoolDbModelList;
 
-    public List<School> getSchoolList() {
-        return schoolList;
+    public List<SchoolDbModel> getSchoolDbModelList() {
+        return schoolDbModelList;
     }
 }
