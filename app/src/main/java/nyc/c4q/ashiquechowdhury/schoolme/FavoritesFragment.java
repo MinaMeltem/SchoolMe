@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import io.realm.Realm;
 import io.realm.RealmResults;
 import nyc.c4q.ashiquechowdhury.schoolme.favoritesrecycler.SchoolAdapter;
-import nyc.c4q.ashiquechowdhury.schoolme.model.SchoolDbModel;
+import nyc.c4q.ashiquechowdhury.schoolme.models.SchoolDbModel;
 
 /**
  * Created by ashiquechowdhury on 2/18/17.
@@ -31,19 +31,19 @@ public class FavoritesFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState){
         Realm.init(getActivity().getApplicationContext());
         Realm realm = Realm.getDefaultInstance();
-        realm.beginTransaction();
-
-        SchoolDbModel schoolDbModel = realm.createObject(SchoolDbModel.class);
-        schoolDbModel.setPictureURL("http://weburbanist.com/wp-content/uploads/2009/04/orestad-high-schoolDbModel-1.jpg");
-        schoolDbModel.setSchoolName("iscoolme");
-        schoolDbModel.setPictureURL("http://weburbanist.com/wp-content/uploads/2009/04/orestad-high-schoolDbModel-1.jpg");
-        schoolDbModel.setSchoolName("iscoolme");
-        schoolDbModel.setPictureURL("http://weburbanist.com/wp-content/uploads/2009/04/orestad-high-schoolDbModel-1.jpg");
-        schoolDbModel.setSchoolName("iscoolme");
-        schoolDbModel.setPictureURL("http://weburbanist.com/wp-content/uploads/2009/04/orestad-high-schoolDbModel-1.jpg");
-        schoolDbModel.setSchoolName("iscoolme");
-
-        realm.commitTransaction();
+//        realm.beginTransaction();
+//
+//        SchoolDbModel schoolDbModel = realm.createObject(SchoolDbModel.class);
+//        schoolDbModel.setPictureURL("http://weburbanist.com/wp-content/uploads/2009/04/orestad-high-schoolDbModel-1.jpg");
+//        schoolDbModel.setSchoolName("iscoolme");
+//        schoolDbModel.setPictureURL("http://weburbanist.com/wp-content/uploads/2009/04/orestad-high-schoolDbModel-1.jpg");
+//        schoolDbModel.setSchoolName("iscoolme");
+//        schoolDbModel.setPictureURL("http://weburbanist.com/wp-content/uploads/2009/04/orestad-high-schoolDbModel-1.jpg");
+//        schoolDbModel.setSchoolName("iscoolme");
+//        schoolDbModel.setPictureURL("http://weburbanist.com/wp-content/uploads/2009/04/orestad-high-schoolDbModel-1.jpg");
+//        schoolDbModel.setSchoolName("iscoolme");
+//
+//        realm.commitTransaction();
 
         RealmResults<SchoolDbModel> results = realm.where(SchoolDbModel.class).findAll();
         schoolList.setLayoutManager(new LinearLayoutManager(view.getContext()));

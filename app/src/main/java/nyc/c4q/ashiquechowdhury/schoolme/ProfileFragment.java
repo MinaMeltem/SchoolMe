@@ -9,9 +9,9 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-import nyc.c4q.ashiquechowdhury.schoolme.model.School;
-import nyc.c4q.ashiquechowdhury.schoolme.model.SchoolsResponse;
-import nyc.c4q.ashiquechowdhury.schoolme.network.SchoolService;
+import nyc.c4q.ashiquechowdhury.schoolme.models.School;
+import nyc.c4q.ashiquechowdhury.schoolme.models.SchoolService;
+import nyc.c4q.ashiquechowdhury.schoolme.models.SchoolsResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

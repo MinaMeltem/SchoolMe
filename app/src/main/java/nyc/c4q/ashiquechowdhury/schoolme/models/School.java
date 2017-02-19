@@ -1,10 +1,13 @@
-package nyc.c4q.ashiquechowdhury.schoolme.model;
+package nyc.c4q.ashiquechowdhury.schoolme.models;
+
+import android.os.Parcel;
+import android.os.Parcelable;
 
 /**
  * Created by meltemyildirim on 2/18/17.
  */
 
-public class School {
+public class School implements Parcelable {
     private String school_name;
     private String school_type;
     private String addtl_info1;
@@ -63,6 +66,49 @@ public class School {
     }
 
     //Getters
+
+    public School(Parcel in) {
+        school_name = in.readString();
+        school_type = in.readString();
+        addtl_info1 = in.readString();
+        advance_placement_courses = in.readString();
+        start_time = in.readString();
+        end_time = in.readString();
+        program_highlights = in.readString();
+        sport_boys = in.readString();
+        sport_girls = in.readString();
+        language_classes = in.readString();
+        extra_activities = in.readString();
+        grade_span_min = in.readString();
+        grade_span_max = in.readString();
+        total_students = in.readString();
+        partner_hospital = in.readString();
+        primary_address_line_1 = in.readString();
+        zip = in.readString();
+        boro = in.readString();
+        phone = in.readString();
+        email = in.readString();
+        website = in.readString();
+        ell_program = in.readString();
+        bus = in.readString();
+        subway = in.readString();
+    }
+
+    public static final Creator<School> CREATOR = new Creator<School>() {
+        @Override
+        public School createFromParcel(Parcel in) {
+            return new School(in);
+        }
+
+        @Override
+        public School[] newArray(int size) {
+            return new School[size];
+        }
+    };
+
+    public School(String s) {
+        this.school_name = s;
+    }
 
     public String getSchool_name() {
         return school_name;
@@ -255,6 +301,39 @@ public class School {
 
     public void setSubway(String subway) {
         this.subway = subway;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(school_name);
+        parcel.writeString(school_type);
+        parcel.writeString(addtl_info1);
+        parcel.writeString(advance_placement_courses);
+        parcel.writeString(start_time);
+        parcel.writeString(end_time);
+        parcel.writeString(program_highlights);
+        parcel.writeString(sport_boys);
+        parcel.writeString(sport_girls);
+        parcel.writeString(language_classes);
+        parcel.writeString(extra_activities);
+        parcel.writeString(grade_span_min);
+        parcel.writeString(grade_span_max);
+        parcel.writeString(total_students);
+        parcel.writeString(partner_hospital);
+        parcel.writeString(primary_address_line_1);
+        parcel.writeString(zip);
+        parcel.writeString(boro);
+        parcel.writeString(phone);
+        parcel.writeString(email);
+        parcel.writeString(website);
+        parcel.writeString(ell_program);
+        parcel.writeString(bus);
+        parcel.writeString(subway);
     }
 }
 
