@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
-    BottomNavigationView bottomNavigationView;
+    private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,5 +52,4 @@ public class MainActivity extends AppCompatActivity {
     private void inflateFavoritesFragment() {
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new FavoritesFragment()).commit();
     }
-
 }

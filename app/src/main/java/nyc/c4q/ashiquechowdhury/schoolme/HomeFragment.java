@@ -1,12 +1,8 @@
 package nyc.c4q.ashiquechowdhury.schoolme;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.transition.Fade;
-import android.support.transition.Transition;
 import android.support.v4.app.Fragment;
-import android.transition.TransitionInflater;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -117,8 +113,8 @@ public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListe
             school = data.get(position);
 
             Glide.with(getContext()).load(SCHOOL_IMAGE).into(ivSchoolname);
-            tvBoroughName.setText(school.getSchoolBorough());
-            tvSchoolname.setText(school.getSchoolName());
+            tvBoroughName.setText(school.getBoro());
+            tvSchoolname.setText(school.getSchool_name());
 
             ivSchoolname.setOnClickListener(this);
 

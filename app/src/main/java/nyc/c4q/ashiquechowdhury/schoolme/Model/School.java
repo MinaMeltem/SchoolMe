@@ -1,13 +1,10 @@
 package nyc.c4q.ashiquechowdhury.schoolme.model;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 /**
- * Created by ashiquechowdhury on 2/18/17.
+ * Created by meltemyildirim on 2/18/17.
  */
 
-public class School implements Parcelable {
+public class School {
     private String school_name;
     private String school_type;
     private String addtl_info1;
@@ -34,9 +31,6 @@ public class School implements Parcelable {
     private String subway;
 
     //Constructors
-    public School(String name){
-        this.school_name = name;
-    }
 
     public School() {
     }
@@ -262,14 +256,5 @@ public class School implements Parcelable {
     public void setSubway(String subway) {
         this.subway = subway;
     }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-
-    }
 }
+
