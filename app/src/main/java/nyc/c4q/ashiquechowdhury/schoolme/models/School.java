@@ -8,14 +8,14 @@ public class School implements Parcelable {
     private String school_name;
     private String school_type;
     private String addtl_info1;
-    private String advance_placement_courses;
+    private String advancedplacement_courses;
     private String start_time;
     private String end_time;
     private String program_highlights;
     private String sport_boys;
     private String sport_girls;
     private String language_classes;
-    private String extra_activities;
+    private String extracurricular_activities;
     private String grade_span_min;
     private String grade_span_max;
     private String total_students;
@@ -35,18 +35,19 @@ public class School implements Parcelable {
     public School() {
     }
 
-    public School(String school_name, String school_type, String addtl_info1, String advance_placement_courses, String start_time, String end_time, String program_highlights, String sport_boys, String sport_girls, String language_classes, String extra_activities, String grade_span_min, String grade_span_max, String total_students, String partner_hospital, String primary_address_line_1, String zip, String boro, String phone, String email, String website, String ell_program, String bus, String subway) {
+    public School(String school_name, String school_type, String addtl_info1, String advancedplacement_courses, String start_time, String end_time, String program_highlights, String sport_boys, String sport_girls, String language_classes, String extracurricular_activities, String grade_span_min, String grade_span_max, String total_students, String partner_hospital, String primary_address_line_1, String zip, String boro, String phone, String email, String website, String ell_program, String bus, String subway) {
+
         this.school_name = school_name;
         this.school_type = school_type;
         this.addtl_info1 = addtl_info1;
-        this.advance_placement_courses = advance_placement_courses;
+        this.advancedplacement_courses = advancedplacement_courses;
         this.start_time = start_time;
         this.end_time = end_time;
         this.program_highlights = program_highlights;
         this.sport_boys = sport_boys;
         this.sport_girls = sport_girls;
         this.language_classes = language_classes;
-        this.extra_activities = extra_activities;
+        this.extracurricular_activities = extracurricular_activities;
         this.grade_span_min = grade_span_min;
         this.grade_span_max = grade_span_max;
         this.total_students = total_students;
@@ -65,17 +66,18 @@ public class School implements Parcelable {
     //Getters
 
     public School(Parcel in) {
+
         school_name = in.readString();
         school_type = in.readString();
         addtl_info1 = in.readString();
-        advance_placement_courses = in.readString();
+        advancedplacement_courses = in.readString();
         start_time = in.readString();
         end_time = in.readString();
         program_highlights = in.readString();
         sport_boys = in.readString();
         sport_girls = in.readString();
         language_classes = in.readString();
-        extra_activities = in.readString();
+        extracurricular_activities = in.readString();
         grade_span_min = in.readString();
         grade_span_max = in.readString();
         total_students = in.readString();
@@ -119,8 +121,8 @@ public class School implements Parcelable {
         return addtl_info1;
     }
 
-    public String getAdvance_placement_courses() {
-        return advance_placement_courses;
+    public String getAdvancedplacement_courses() {
+        return advancedplacement_courses;
     }
 
     public String getStart_time() {
@@ -147,8 +149,8 @@ public class School implements Parcelable {
         return language_classes;
     }
 
-    public String getExtra_activities() {
-        return extra_activities;
+    public String getExtracurricular_activities() {
+        return extracurricular_activities;
     }
 
     public String getGrade_span_min() {
@@ -216,8 +218,8 @@ public class School implements Parcelable {
         this.addtl_info1 = addtl_info1;
     }
 
-    public void setAdvance_placement_courses(String advance_placement_courses) {
-        this.advance_placement_courses = advance_placement_courses;
+    public void setAdvancedplacement_courses(String advancedplacement_courses) {
+        this.advancedplacement_courses = advancedplacement_courses;
     }
 
     public void setStart_time(String start_time) {
@@ -244,8 +246,8 @@ public class School implements Parcelable {
         this.language_classes = language_classes;
     }
 
-    public void setExtra_activities(String extra_activities) {
-        this.extra_activities = extra_activities;
+    public void setExtracurricular_activities(String extracurricular_activities) {
+        this.extracurricular_activities = extracurricular_activities;
     }
 
     public void setGrade_span_min(String grade_span_min) {
@@ -310,14 +312,14 @@ public class School implements Parcelable {
         parcel.writeString(school_name);
         parcel.writeString(school_type);
         parcel.writeString(addtl_info1);
-        parcel.writeString(advance_placement_courses);
+        parcel.writeString(advancedplacement_courses);
         parcel.writeString(start_time);
         parcel.writeString(end_time);
         parcel.writeString(program_highlights);
         parcel.writeString(sport_boys);
         parcel.writeString(sport_girls);
         parcel.writeString(language_classes);
-        parcel.writeString(extra_activities);
+        parcel.writeString(extracurricular_activities);
         parcel.writeString(grade_span_min);
         parcel.writeString(grade_span_max);
         parcel.writeString(total_students);

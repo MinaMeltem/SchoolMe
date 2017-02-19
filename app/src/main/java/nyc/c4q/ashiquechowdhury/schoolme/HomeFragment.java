@@ -86,7 +86,6 @@ public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListe
         });
     }
 
-
     @Override
     public void onViewSwipedToRight(int position) {
         School swipedElement = swipeAdapter.getItem(position);
@@ -157,8 +156,8 @@ public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListe
             schoolName.setText(school.getSchool_name());
             schoolLocation.setText(school.getBoro());
             studentNumber.setText(school.getTotal_students());
-            advancedPlacement.setText(school.getAdvance_placement_courses());
-            extraCurricular.setText(school.getExtra_activities());
+            advancedPlacement.setText(school.getAdvancedplacement_courses());
+            extraCurricular.setText(school.getExtracurricular_activities());
 
             schoolName.setOnClickListener(this);
 
