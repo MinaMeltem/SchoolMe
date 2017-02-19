@@ -21,18 +21,14 @@ public class SwipeStack extends ViewGroup {
     public static final int SWIPE_DIRECTION_BOTH = 0;
     public static final int SWIPE_DIRECTION_ONLY_LEFT = 1;
     public static final int SWIPE_DIRECTION_ONLY_RIGHT = 2;
-
     public static final int DEFAULT_ANIMATION_DURATION = 300;
     public static final int DEFAULT_STACK_SIZE = 3;
     public static final float DEFAULT_SWIPE_OPACITY = 1f;
     public static final float DEFAULT_SCALE_FACTOR = 1f;
     public static final boolean DEFAULT_DISABLE_HW_ACCELERATION = true;
-
     private static final String KEY_SUPER_STATE = "superState";
     private static final String KEY_CURRENT_INDEX = "currentIndex";
-
     private Adapter adapter;
-
     private int allowedSwipeDirections;
     private int animationDuration;
     private int currentViewIndex;
@@ -42,7 +38,6 @@ public class SwipeStack extends ViewGroup {
     private float scaleFactor;
     private boolean disableHwAcceleration;
     private boolean isFirstLayout = true;
-
     private View topView;
     private SwipeHelper swipeHelper;
     private DataSetObserver dataSetObserver;

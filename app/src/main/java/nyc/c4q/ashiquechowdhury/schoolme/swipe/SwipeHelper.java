@@ -9,14 +9,12 @@ public class SwipeHelper implements View.OnTouchListener {
 
     private final SwipeStack swipeStack;
     private View observedView;
-
     private boolean listenForTouchEvents;
     private float downX;
     private float downY;
     private float initialX;
     private float initialY;
     private int pointerId;
-
     private float opacityEnd = SwipeStack.DEFAULT_SWIPE_OPACITY;
     private int animationDuration = SwipeStack.DEFAULT_ANIMATION_DURATION;
 
@@ -28,6 +26,7 @@ public class SwipeHelper implements View.OnTouchListener {
     public boolean onTouch(View v, MotionEvent event) {
 
         switch (event.getAction()) {
+
             case MotionEvent.ACTION_DOWN:
                 if(!listenForTouchEvents || !swipeStack.isEnabled()) {
                     return false;

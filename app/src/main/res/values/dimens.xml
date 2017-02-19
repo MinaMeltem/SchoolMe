@@ -5,8 +5,9 @@
     <dimen name="margin_fab">16dp</dimen>
     <dimen name="padding_normal">8dp</dimen>
     <dimen name="padding_swipestack">10dp</dimen>
-
     <dimen name="elevation_normal">4dp</dimen>
     <dimen name="default_stack_spacing">12dp</dimen>
-
+    <dimen name="section_header">20sp</dimen>
+    <dimen name="section_info">18sp</dimen>
+    <dimen name="school_info_container_padding">7dp</dimen>
 </resources>

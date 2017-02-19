@@ -8,7 +8,8 @@
     <string name="swipe_right">Swipe right</string>
     <string name="view_swiped_left">Disliked!</string>
     <string name="view_swiped_right">Added to Favorites!</string>
-    <string name="school_text">School</string>
+    <string name="school_name">Stuyvesant High School</string>
+    <string name="school_borough">Queens</string>
     <string name="dummy_fab">Added School</string>
 
     <string name="reset">Reset stack</string>

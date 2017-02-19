@@ -7,19 +7,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import nyc.c4q.ashiquechowdhury.schoolme.model.School;
 import nyc.c4q.ashiquechowdhury.schoolme.swipe.SwipeStack;
 
 public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListener {
 
-    private ArrayList<String> data; // CHANGE TO MODEL
+    private String SCHOOL_IMAGE = "http://vignette1.wikia.nocookie.net/springfieldbound/images/7/7b/Springfield_Elementary_School.PNG/revision/latest?cb=20120516024143";
+    private ArrayList<School> data; // CHANGE TO MODEL
     private SwipeStack swipeStack;
     private SwipeStackAdapter swipeAdapter;
+    private ImageView schoolPic;
+    private School school;
 
     @Nullable
     @Override
@@ -40,43 +47,41 @@ public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListe
         swipeStack.setAdapter(swipeAdapter);
         swipeStack.setListener(this);
         fillWithTestData();
+        schoolPic = (ImageView) getView().findViewById(R.id.school_pic);
     }
 
     private void fillWithTestData() {
         for (int x = 0; x < 5; x++) {
-            data.add(getString(R.string.school_text) + " " + (x + 1));
+            data.add(new School(getString(R.string.school_name) + " " + (x + 1)));
         }
     }
 
     @Override
     public void onViewSwipedToRight(int position) {
-        String swipedElement = swipeAdapter.getItem(position);
-        Toast.makeText(getActivity(), getString(R.string.view_swiped_right, swipedElement),
+        School swipedElement = swipeAdapter.getItem(position);
+        Toast.makeText(getActivity(), "Added to Favorites",
                 Toast.LENGTH_SHORT).show();
-
-
     }
 
     @Override
     public void onViewSwipedToLeft(int position) {
-        String swipedElement = swipeAdapter.getItem(position);
-        Toast.makeText(getContext(), getString(R.string.view_swiped_left, swipedElement),
+        School swipedElement = swipeAdapter.getItem(position);
+        Toast.makeText(getContext(), "Disliked",
                 Toast.LENGTH_SHORT).show();
     }
-
 
     @Override
     public void onStackEmpty() {
         Toast.makeText(getContext(), R.string.stack_empty, Toast.LENGTH_SHORT).show();
     }
 
-    public class SwipeStackAdapter extends BaseAdapter {
+    public class SwipeStackAdapter extends BaseAdapter implements View.OnClickListener {
 
         //ADD TPP TO LIST, CREATE MODEL
 
-        private List<String> data;
+        private List<School> data;
 
-        public SwipeStackAdapter(List<String> data) {
+        public SwipeStackAdapter(List<School> data) {
             this.data = data;
         }
 
@@ -86,7 +91,7 @@ public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListe
         }
 
         @Override
-        public String getItem(int position) {
+        public School getItem(int position) {
             return data.get(position);
         }
 
@@ -101,9 +106,36 @@ public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListe
                 convertView = getActivity().getLayoutInflater().inflate(R.layout.school_card, parent, false);
             }
 
-            TextView textViewCard = (TextView) convertView.findViewById(R.id.borough);
-            textViewCard.setText(data.get(position));
+            ImageView ivSchoolname = (ImageView) convertView.findViewById(R.id.school_pic);
+            TextView tvBoroughName = (TextView) convertView.findViewById(R.id.school_location);
+            TextView tvSchoolname = (TextView) convertView.findViewById(R.id.school_name);
+
+            school = data.get(position);
+
+            Glide.with(getContext()).load(SCHOOL_IMAGE).into(ivSchoolname);
+            tvBoroughName.setText(school.getBoro());
+            tvSchoolname.setText(school.getSchool_name());
+
+            ivSchoolname.setOnClickListener(this);
+
             return convertView;
+        }
+
+        @Override
+        public void onClick(View view) {
+            Bundle args = new Bundle();
+            args.putParcelable("SchoolObject", school);
+            args.putString("SchoolImage", SCHOOL_IMAGE);
+
+            SchoolInfoFragment schoolInfoFragment = new SchoolInfoFragment();
+            schoolInfoFragment.setArguments(args);
+
+
+            getActivity().getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.frame_layout, schoolInfoFragment)
+                    .addToBackStack(null)
+                    .commit();
         }
     }
 }
