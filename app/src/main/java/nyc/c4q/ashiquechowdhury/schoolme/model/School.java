@@ -4,10 +4,10 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * Created by ashiquechowdhury on 2/18/17.
+ * Created by meltemyildirim on 2/18/17.
  */
 
-public class School implements Parcelable {
+public class School implements Parcelable{
     private String school_name;
     private String school_type;
     private String addtl_info1;
@@ -273,3 +273,4 @@ public class School implements Parcelable {
 
     }
 }
+
