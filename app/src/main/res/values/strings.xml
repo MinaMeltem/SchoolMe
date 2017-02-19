@@ -16,4 +16,5 @@
     <string name="stack_reset">Stack reset!</string>
     <string name="stack_empty">No more Schools!</string>
     <string name="github">View on GitHub</string>
+    <string name="students">Students</string>
 </resources>

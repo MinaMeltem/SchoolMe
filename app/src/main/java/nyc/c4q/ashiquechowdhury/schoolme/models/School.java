@@ -36,6 +36,7 @@ public class School implements Parcelable {
     }
 
     public School(String school_name, String school_type, String addtl_info1, String advancedplacement_courses, String start_time, String end_time, String program_highlights, String sport_boys, String sport_girls, String language_classes, String extracurricular_activities, String grade_span_min, String grade_span_max, String total_students, String partner_hospital, String primary_address_line_1, String zip, String boro, String phone, String email, String website, String ell_program, String bus, String subway) {
+
         this.school_name = school_name;
         this.school_type = school_type;
         this.addtl_info1 = addtl_info1;
