@@ -2,11 +2,8 @@ package nyc.c4q.ashiquechowdhury.schoolme.models;
 
 import io.realm.RealmObject;
 
-/**
- * Created by ashiquechowdhury on 2/18/17.
- */
-
 public class SchoolDbModel extends RealmObject {
+
     private String pictureURL;
     private String schoolName;
 

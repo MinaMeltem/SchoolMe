@@ -33,7 +33,9 @@ public class ProfileFragment extends Fragment {
     }
 
     public void retrofit(){
+
         String base_URL = "https://data.cityofnewyork.us";
+
         Retrofit retrofit =  new Retrofit.Builder()
                 .baseUrl(base_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -44,6 +46,7 @@ public class ProfileFragment extends Fragment {
         call.enqueue(new Callback<List<School>>() {
             @Override
             public void onResponse(Call<List<School>> call, Response<List<School>> response) {
+
                 Log.d(TAG, "onResponse: " + response.body().get(1).getBoro());
             }
 
