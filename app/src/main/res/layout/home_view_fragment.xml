@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:background="#000000"
     android:layout_height="match_parent"
-    android:clipChildren="false"
     tools:context="nyc.c4q.ashiquechowdhury.schoolme.HomeFragment">
 
     <nyc.c4q.ashiquechowdhury.schoolme.swipe.SwipeStack
