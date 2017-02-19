@@ -35,3 +35,10 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.5.1'
 }
 apply plugin: 'realm-android'
+
+allprojects {
+    repositories {
+        maven { url "https://jitpack.io" }
+        jcenter()
+    }
+}
