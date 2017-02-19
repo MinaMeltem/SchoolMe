@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-import nyc.c4q.ashiquechowdhury.schoolme.Network.SchoolService;
+import nyc.c4q.ashiquechowdhury.schoolme.network.SchoolService;
 import nyc.c4q.ashiquechowdhury.schoolme.model.School;
 import nyc.c4q.ashiquechowdhury.schoolme.model.SchoolsResponse;
 import retrofit2.Call;
