@@ -18,6 +18,7 @@ import nyc.c4q.ashiquechowdhury.schoolme.models.SchoolDbModel;
  */
 
 public class FavoritesFragment extends Fragment {
+    private SchoolAdapter schoolAdapter;
     private RecyclerView schoolList;
 
     @Override
@@ -31,22 +32,18 @@ public class FavoritesFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState){
         Realm.init(getActivity().getApplicationContext());
         Realm realm = Realm.getDefaultInstance();
-//        realm.beginTransaction();
-//
+        realm.beginTransaction();
+
 //        SchoolDbModel schoolDbModel = realm.createObject(SchoolDbModel.class);
 //        schoolDbModel.setPictureURL("http://weburbanist.com/wp-content/uploads/2009/04/orestad-high-schoolDbModel-1.jpg");
 //        schoolDbModel.setSchoolName("iscoolme");
-//        schoolDbModel.setPictureURL("http://weburbanist.com/wp-content/uploads/2009/04/orestad-high-schoolDbModel-1.jpg");
-//        schoolDbModel.setSchoolName("iscoolme");
-//        schoolDbModel.setPictureURL("http://weburbanist.com/wp-content/uploads/2009/04/orestad-high-schoolDbModel-1.jpg");
-//        schoolDbModel.setSchoolName("iscoolme");
-//        schoolDbModel.setPictureURL("http://weburbanist.com/wp-content/uploads/2009/04/orestad-high-schoolDbModel-1.jpg");
-//        schoolDbModel.setSchoolName("iscoolme");
-//
-//        realm.commitTransaction();
+
+        realm.commitTransaction();
 
         RealmResults<SchoolDbModel> results = realm.where(SchoolDbModel.class).findAll();
+
         schoolList.setLayoutManager(new GridLayoutManager(view.getContext(),2));
-        schoolList.setAdapter(new SchoolAdapter(results));
+        schoolAdapter = new SchoolAdapter(results);
+        schoolList.setAdapter(schoolAdapter);
     }
 }

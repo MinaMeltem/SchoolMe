@@ -3,6 +3,7 @@ package nyc.c4q.ashiquechowdhury.schoolme;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,15 +18,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nyc.c4q.ashiquechowdhury.schoolme.models.School;
+import nyc.c4q.ashiquechowdhury.schoolme.models.SchoolService;
+import nyc.c4q.ashiquechowdhury.schoolme.models.SchoolsResponse;
 import nyc.c4q.ashiquechowdhury.schoolme.swipe.SwipeStack;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListener {
 
+    private static final String TAG = SchoolsResponse.class.getSimpleName();
     private String SCHOOL_IMAGE = "http://vignette1.wikia.nocookie.net/springfieldbound/images/7/7b/Springfield_Elementary_School.PNG/revision/latest?cb=20120516024143";
-    private ArrayList<School> data; // CHANGE TO MODEL
+    private List<School> schoolList = new ArrayList<>();
     private SwipeStack swipeStack;
     private SwipeStackAdapter swipeAdapter;
-    private ImageView schoolPic;
     private School school;
 
     @Nullable
@@ -37,30 +45,63 @@ public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListe
     @Override
     public void onStart() {
         super.onStart();
-        setViews();
+        setSwipeViews();
     }
 
-    public void setViews() {
+    public void setSwipeViews() {
         swipeStack = (SwipeStack) getView().findViewById(R.id.swipeStack);
-        data = new ArrayList<>();
-        swipeAdapter = new SwipeStackAdapter(data);
-        swipeStack.setAdapter(swipeAdapter);
+        fillSchoolList();
         swipeStack.setListener(this);
-        fillWithTestData();
-        schoolPic = (ImageView) getView().findViewById(R.id.school_pic);
     }
 
-    private void fillWithTestData() {
-        for (int x = 0; x < 5; x++) {
-            data.add(new School(getString(R.string.school_name) + " " + (x + 1)));
-        }
+    private void fillSchoolList() {
+
+        swipeAdapter = new SwipeStackAdapter(schoolList);
+        swipeStack.setAdapter(swipeAdapter);
+
+        String base_URL = "https://data.cityofnewyork.us";
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(base_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        SchoolService service = retrofit.create(SchoolService.class);
+
+        Call<List<School>> call = service.getResponse();
+        call.enqueue(new Callback<List<School>>() {
+
+            @Override
+            public void onResponse(Call<List<School>> call, Response<List<School>> response) {
+                schoolList.addAll(response.body());
+                swipeAdapter.notifyDataSetChanged();
+
+                Log.d(TAG, "onResponse: " + response.body().get(1).getBoro());
+            }
+
+            @Override
+            public void onFailure(Call<List<School>> call, Throwable t) {
+                Log.d(TAG, "onFailure: " + t);
+            }
+        });
     }
+
 
     @Override
     public void onViewSwipedToRight(int position) {
         School swipedElement = swipeAdapter.getItem(position);
         Toast.makeText(getActivity(), "Added to Favorites",
                 Toast.LENGTH_SHORT).show();
+
+//        Realm.init(getActivity().getApplicationContext());
+//        Realm realm = Realm.getDefaultInstance();
+//        realm.beginTransaction();
+//
+//        SchoolDbModel schoolDbModel = realm.createObject(SchoolDbModel.class);
+//        schoolDbModel.setPictureURL("http://weburbanist.com/wp-content/uploads/2009/04/orestad-high-schoolDbModel-1.jpg");
+//        schoolDbModel.setSchoolName("iscoolme");
+//
+//        realm.commitTransaction();
     }
 
     @Override
@@ -68,6 +109,7 @@ public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListe
         School swipedElement = swipeAdapter.getItem(position);
         Toast.makeText(getContext(), "Disliked",
                 Toast.LENGTH_SHORT).show();
+
     }
 
     @Override
@@ -77,22 +119,28 @@ public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListe
 
     public class SwipeStackAdapter extends BaseAdapter implements View.OnClickListener {
 
-        //ADD TPP TO LIST, CREATE MODEL
+        private List<School> schoolList;
 
-        private List<School> data;
+        private ImageView schoolPic;
+        private TextView schoolName;
+        private TextView schoolLocation;
+        private TextView studentNumber;
+        private TextView advancedPlacement;
+        private TextView extraCurricular;
 
-        public SwipeStackAdapter(List<School> data) {
-            this.data = data;
+
+        public SwipeStackAdapter(List<School> schoolList) {
+            this.schoolList = schoolList;
         }
 
         @Override
         public int getCount() {
-            return data.size();
+            return schoolList.size();
         }
 
         @Override
         public School getItem(int position) {
-            return data.get(position);
+            return schoolList.get(position);
         }
 
         @Override
@@ -102,21 +150,28 @@ public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListe
 
         @Override
         public View getView(final int position, View convertView, ViewGroup parent) {
+
             if (convertView == null) {
                 convertView = getActivity().getLayoutInflater().inflate(R.layout.school_card, parent, false);
             }
 
-            ImageView ivSchoolname = (ImageView) convertView.findViewById(R.id.school_pic);
-            TextView tvBoroughName = (TextView) convertView.findViewById(R.id.school_location);
-            TextView tvSchoolname = (TextView) convertView.findViewById(R.id.school_name);
+            schoolPic = (ImageView) convertView.findViewById(R.id.school_pic);
+            schoolName = (TextView) convertView.findViewById(R.id.school_name);
+            schoolLocation = (TextView) convertView.findViewById(R.id.school_location);
+            studentNumber = (TextView) convertView.findViewById(R.id.student_number);
+            advancedPlacement = (TextView) convertView.findViewById(R.id.advanced_placement);
+            extraCurricular = (TextView) convertView.findViewById(R.id.extracurricular);
 
-            school = data.get(position);
+            school = schoolList.get(position);
 
-            Glide.with(getContext()).load(SCHOOL_IMAGE).into(ivSchoolname);
-            tvBoroughName.setText(school.getBoro());
-            tvSchoolname.setText(school.getSchool_name());
+            Glide.with(getContext()).load(SCHOOL_IMAGE).into(schoolPic);
+            schoolName.setText(school.getSchool_name());
+            schoolLocation.setText(school.getBoro());
+            studentNumber.setText(school.getTotal_students());
+            advancedPlacement.setText(school.getAdvance_placement_courses());
+            extraCurricular.setText(school.getExtra_activities());
 
-            ivSchoolname.setOnClickListener(this);
+            schoolName.setOnClickListener(this);
 
             return convertView;
         }
@@ -129,7 +184,6 @@ public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListe
 
             SchoolInfoFragment schoolInfoFragment = new SchoolInfoFragment();
             schoolInfoFragment.setArguments(args);
-
 
             getActivity().getSupportFragmentManager()
                     .beginTransaction()

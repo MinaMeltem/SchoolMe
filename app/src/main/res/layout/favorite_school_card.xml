@@ -6,24 +6,36 @@
     android:layout_height="220dp"
     android:layout_margin="2dp"
     app:cardCornerRadius="3dp"
-    android:elevation="2dp"
-    >
+    android:elevation="2dp">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <ImageView
-            android:background="#fff"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:src="@drawable/ic_favorite_black_24dp"
+            android:layout_height="200dp">
+            <ImageView
+                android:id="@+id/school_image"
+                android:background="#fff0"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:src="@drawable/ic_person_black_24dp" />
+            <Button
+                android:id="@+id/minus_icon"
+                android:layout_margin="5dp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/xmark_icon"
+                android:layout_width="25dp"
+                android:layout_height="20dp" />
             />
+        </RelativeLayout>
         <TextView
-            android:text="asasdasdasdasdsadas"
+            android:background="#81C784"
+            android:text="Stuyvesant High School"
+            android:textColor="#fff"
+            android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/textView" />
     </LinearLayout>
-
-
 </android.support.v7.widget.CardView>
