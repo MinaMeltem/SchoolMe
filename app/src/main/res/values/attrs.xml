@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <declare-styleable name="SwipeStack">
+    <declare-styleable name="HomeSwipeStack">
         <attr name="allowed_swipe_directions" format="integer">
             <enum name="only_left" value="1"/>
             <enum name="only_right" value="2"/>

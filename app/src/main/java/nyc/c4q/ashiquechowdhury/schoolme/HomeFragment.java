@@ -1,7 +1,9 @@
 package nyc.c4q.ashiquechowdhury.schoolme;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.transition.Fade;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,18 +22,18 @@ import java.util.List;
 import nyc.c4q.ashiquechowdhury.schoolme.models.School;
 import nyc.c4q.ashiquechowdhury.schoolme.models.SchoolService;
 import nyc.c4q.ashiquechowdhury.schoolme.models.SchoolsResponse;
-import nyc.c4q.ashiquechowdhury.schoolme.swipe.SwipeStack;
+import nyc.c4q.ashiquechowdhury.schoolme.swipe.HomeSwipeStack;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListener {
+public class HomeFragment extends Fragment implements HomeSwipeStack.SwipeStackListener {
 
     private static final String TAG = SchoolsResponse.class.getSimpleName();
     private List<School> schoolList = new ArrayList<>();
-    private SwipeStack swipeStack;
+    private HomeSwipeStack homeSwipeStack;
     private SwipeStackAdapter swipeAdapter;
     private School school = new School();
     private String schoolImageUrl;
@@ -49,15 +51,15 @@ public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListe
     }
 
     public void setSwipeViews() {
-        swipeStack = (SwipeStack) getView().findViewById(R.id.swipeStack);
+        homeSwipeStack = (HomeSwipeStack) getView().findViewById(R.id.swipeStack);
         fillSchoolList();
-        swipeStack.setListener(this);
+        homeSwipeStack.setListener(this);
     }
 
     private void fillSchoolList() {
 
         swipeAdapter = new SwipeStackAdapter(schoolList);
-        swipeStack.setAdapter(swipeAdapter);
+        homeSwipeStack.setAdapter(swipeAdapter);
 
         String base_URL = "https://data.cityofnewyork.us";
 
@@ -185,15 +187,30 @@ public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListe
 
         @Override
         public void onClick(View view) {
+
+            SchoolInfoFragment schoolInfoFragment = new SchoolInfoFragment();
+            ImageView imageView = (ImageView) view.findViewById(R.id.school_pic);
+            String imageTransitionName = "imageTrans";
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+
+                schoolInfoFragment.setSharedElementEnterTransition(new DetailsTransition());
+                schoolInfoFragment.setEnterTransition(new Fade());
+                setExitTransition(new Fade());
+                schoolInfoFragment.setSharedElementReturnTransition(new DetailsTransition());
+
+            }
+
             Bundle args = new Bundle();
             args.putParcelable("SchoolObject", school);
 //            args.putString("SchoolImage", schoolImageUrl);
 
-            SchoolInfoFragment schoolInfoFragment = new SchoolInfoFragment();
             schoolInfoFragment.setArguments(args);
 
-            getActivity().getSupportFragmentManager()
+            getActivity()
+                    .getSupportFragmentManager()
                     .beginTransaction()
+                    .addSharedElement(imageView, imageTransitionName)
                     .replace(R.id.frame_layout, schoolInfoFragment)
                     .addToBackStack(null)
                     .commit();

@@ -5,9 +5,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
 
-public class SwipeHelper implements View.OnTouchListener {
+public class HomeSwipeHelper implements View.OnTouchListener {
 
-    private final SwipeStack swipeStack;
+    private final HomeSwipeStack homeSwipeStack;
     private View observedView;
     private boolean listenForTouchEvents;
     private float downX;
@@ -15,11 +15,11 @@ public class SwipeHelper implements View.OnTouchListener {
     private float initialX;
     private float initialY;
     private int pointerId;
-    private float opacityEnd = SwipeStack.DEFAULT_SWIPE_OPACITY;
-    private int animationDuration = SwipeStack.DEFAULT_ANIMATION_DURATION;
+    private float opacityEnd = HomeSwipeStack.DEFAULT_SWIPE_OPACITY;
+    private int animationDuration = HomeSwipeStack.DEFAULT_ANIMATION_DURATION;
 
-    public SwipeHelper(SwipeStack swipeStack) {
-        this.swipeStack = swipeStack;
+    public HomeSwipeHelper(HomeSwipeStack homeSwipeStack) {
+        this.homeSwipeStack = homeSwipeStack;
     }
 
     @Override
@@ -28,12 +28,12 @@ public class SwipeHelper implements View.OnTouchListener {
         switch (event.getAction()) {
 
             case MotionEvent.ACTION_DOWN:
-                if(!listenForTouchEvents || !swipeStack.isEnabled()) {
+                if(!listenForTouchEvents || !homeSwipeStack.isEnabled()) {
                     return false;
                 }
 
                 v.getParent().requestDisallowInterceptTouchEvent(true);
-                swipeStack.onSwipeStart();
+                homeSwipeStack.onSwipeStart();
                 pointerId = event.getPointerId(0);
                 downX = event.getX(pointerId);
                 downY = event.getY(pointerId);
@@ -53,9 +53,9 @@ public class SwipeHelper implements View.OnTouchListener {
 
                 float dragDistanceX = newX - initialX;
                 float swipeProgress = Math.min(Math.max(
-                        dragDistanceX / swipeStack.getWidth(), -1), 1);
+                        dragDistanceX / homeSwipeStack.getWidth(), -1), 1);
 
-                swipeStack.onSwipeProgress(swipeProgress);
+                homeSwipeStack.onSwipeProgress(swipeProgress);
 
                 if (opacityEnd < 1f) {
                     float alpha = 1 - Math.min(Math.abs(swipeProgress * 2), 1);
@@ -65,7 +65,7 @@ public class SwipeHelper implements View.OnTouchListener {
 
             case MotionEvent.ACTION_UP:
                 v.getParent().requestDisallowInterceptTouchEvent(false);
-                swipeStack.onSwipeEnd();
+                homeSwipeStack.onSwipeEnd();
                 checkViewPosition();
                 return true;
         }
@@ -73,20 +73,20 @@ public class SwipeHelper implements View.OnTouchListener {
     }
 
     private void checkViewPosition() {
-        if(!swipeStack.isEnabled()) {
+        if(!homeSwipeStack.isEnabled()) {
             resetViewPosition();
             return;
         }
 
         float viewCenterHorizontal = observedView.getX() + (observedView.getWidth() / 2);
-        float parentFirstThird = swipeStack.getWidth() / 3f;
+        float parentFirstThird = homeSwipeStack.getWidth() / 3f;
         float parentLastThird = parentFirstThird * 2;
 
         if (viewCenterHorizontal < parentFirstThird &&
-                swipeStack.getAllowedSwipeDirections() != SwipeStack.SWIPE_DIRECTION_ONLY_RIGHT) {
+                homeSwipeStack.getAllowedSwipeDirections() != HomeSwipeStack.SWIPE_DIRECTION_ONLY_RIGHT) {
             swipeViewToLeft(animationDuration / 2);
         } else if (viewCenterHorizontal > parentLastThird &&
-                swipeStack.getAllowedSwipeDirections() != SwipeStack.SWIPE_DIRECTION_ONLY_LEFT) {
+                homeSwipeStack.getAllowedSwipeDirections() != HomeSwipeStack.SWIPE_DIRECTION_ONLY_LEFT) {
             swipeViewToRight(animationDuration / 2);
         } else {
             resetViewPosition();
@@ -109,13 +109,13 @@ public class SwipeHelper implements View.OnTouchListener {
         listenForTouchEvents = false;
         observedView.animate().cancel();
         observedView.animate()
-                .x(-swipeStack.getWidth() + observedView.getX())
+                .x(-homeSwipeStack.getWidth() + observedView.getX())
                 .alpha(0f)
                 .setDuration(duration)
                 .setListener(new AnimationUtils.AnimationEndListener() {
                     @Override
                     public void onAnimationEnd(Animator animation) {
-                        swipeStack.onViewSwipedToLeft();
+                        homeSwipeStack.onViewSwipedToLeft();
                     }
                 });
     }
@@ -125,13 +125,13 @@ public class SwipeHelper implements View.OnTouchListener {
         listenForTouchEvents = false;
         observedView.animate().cancel();
         observedView.animate()
-                .x(swipeStack.getWidth() + observedView.getX())
+                .x(homeSwipeStack.getWidth() + observedView.getX())
                 .alpha(0f)
                 .setDuration(duration)
                 .setListener(new AnimationUtils.AnimationEndListener() {
                     @Override
                     public void onAnimationEnd(Animator animation) {
-                        swipeStack.onViewSwipedToRight();
+                        homeSwipeStack.onViewSwipedToRight();
                     }
                 });
     }

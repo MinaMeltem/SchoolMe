@@ -11,9 +11,6 @@ import io.realm.RealmResults;
 import nyc.c4q.ashiquechowdhury.schoolme.R;
 import nyc.c4q.ashiquechowdhury.schoolme.models.SchoolDbModel;
 
-/**
- * Created by ashiquechowdhury on 2/18/17.
- */
 public class SchoolAdapter extends RecyclerView.Adapter<SchoolViewHolder> {
     private List<SchoolDbModel> favoriteSchoolDbModels;
 

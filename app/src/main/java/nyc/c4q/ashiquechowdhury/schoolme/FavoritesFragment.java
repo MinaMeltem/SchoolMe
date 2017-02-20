@@ -13,10 +13,6 @@ import io.realm.RealmResults;
 import nyc.c4q.ashiquechowdhury.schoolme.favoritesrecycler.SchoolAdapter;
 import nyc.c4q.ashiquechowdhury.schoolme.models.SchoolDbModel;
 
-/**
- * Created by ashiquechowdhury on 2/18/17.
- */
-
 public class FavoritesFragment extends Fragment {
     private SchoolAdapter schoolAdapter;
     private RecyclerView schoolList;

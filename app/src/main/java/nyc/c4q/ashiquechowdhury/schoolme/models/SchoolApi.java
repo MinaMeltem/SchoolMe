@@ -8,10 +8,6 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-/**
- * Created by ashiquechowdhury on 2/19/17.
- */
-
 public class SchoolApi {
     private static int called = 0;
     static List<School> mySchoolList;

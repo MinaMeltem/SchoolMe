@@ -17,10 +17,6 @@ import com.bumptech.glide.Glide;
 
 import nyc.c4q.ashiquechowdhury.schoolme.models.School;
 
-
-/**
- * Created by SACC on 2/18/17.
- */
 public class SchoolInfoFragment extends Fragment implements View.OnClickListener {
 
     private static String SCHOOLIMAGE;
@@ -50,7 +46,7 @@ public class SchoolInfoFragment extends Fragment implements View.OnClickListener
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragmentschoolinfo, container, false);
 
-        appBarBackground = (ImageView) view.findViewById(R.id.appbar_background);
+        appBarBackground = (ImageView) view.findViewById(R.id.school_pic);
         schoolNameInfo = (LinearLayout) view.findViewById(R.id.school_name_info);
         schoolEmailInfo = (LinearLayout) view.findViewById(R.id.school_email_info);
         schoolPhoneInfo = (LinearLayout) view.findViewById(R.id.school_phone_number_info);

@@ -10,10 +10,6 @@ import com.viksaa.sssplash.lib.model.ConfigSplash;
 import nyc.c4q.ashiquechowdhury.schoolme.MainActivity;
 import nyc.c4q.ashiquechowdhury.schoolme.R;
 
-/**
- * Created by meltemyildirim on 2/19/17.
- */
-
 public class SplashScreen extends AwesomeSplash {
     @Override
     public void initSplash(ConfigSplash configSplash) {
