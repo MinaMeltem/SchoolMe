@@ -92,18 +92,6 @@ public class School implements Parcelable {
         subway = in.readString();
     }
 
-    public static final Creator<School> CREATOR = new Creator<School>() {
-        @Override
-        public School createFromParcel(Parcel in) {
-            return new School(in);
-        }
-
-        @Override
-        public School[] newArray(int size) {
-            return new School[size];
-        }
-    };
-
     public School(String s) {
         this.school_name = s;
     }
@@ -333,5 +321,17 @@ public class School implements Parcelable {
         parcel.writeString(bus);
         parcel.writeString(subway);
     }
+
+    public static final Creator<School> CREATOR = new Creator<School>() {
+        @Override
+        public School createFromParcel(Parcel in) {
+            return new School(in);
+        }
+
+        @Override
+        public School[] newArray(int size) {
+            return new School[size];
+        }
+    };
 }
 
