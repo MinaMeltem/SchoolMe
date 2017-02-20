@@ -21,5 +21,4 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState){
     }
 
-    }
 }
