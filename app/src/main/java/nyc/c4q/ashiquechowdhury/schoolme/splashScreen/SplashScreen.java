@@ -30,7 +30,6 @@ public class SplashScreen extends AwesomeSplash {
         configSplash.setAnimLogoSplashTechnique(Techniques.FadeIn);
         configSplash.setTitleFont("fonts/Montserrat-Regular.ttf");
 
-
         //Customize Title
         configSplash.setTitleSplash("SchoolMe");
         configSplash.setTitleTextColor(R.color.white);
