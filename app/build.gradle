@@ -42,3 +42,10 @@ repositories {
     maven { url "https://jitpack.io" }
 }
 apply plugin: 'realm-android'
+
+allprojects {
+    repositories {
+        maven { url "https://jitpack.io" }
+        jcenter()
+    }
+}

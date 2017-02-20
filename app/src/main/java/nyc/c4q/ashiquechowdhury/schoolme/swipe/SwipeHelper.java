@@ -49,7 +49,7 @@ public class SwipeHelper implements View.OnTouchListener {
                 float newY = observedView.getY() + dy;
 
                 observedView.setX(newX);
-                observedView.setY(newY);
+//                observedView.setY(newY);
 
                 float dragDistanceX = newX - initialX;
                 float swipeProgress = Math.min(Math.max(

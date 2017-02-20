@@ -86,11 +86,22 @@ public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListe
         });
     }
 
+
     @Override
     public void onViewSwipedToRight(int position) {
         School swipedElement = swipeAdapter.getItem(position);
         Toast.makeText(getActivity(), "Added to Favorites",
                 Toast.LENGTH_SHORT).show();
+
+//        Realm.init(getActivity().getApplicationContext());
+//        Realm realm = Realm.getDefaultInstance();
+//        realm.beginTransaction();
+//
+//        SchoolDbModel schoolDbModel = realm.createObject(SchoolDbModel.class);
+//        schoolDbModel.setPictureURL("http://weburbanist.com/wp-content/uploads/2009/04/orestad-high-schoolDbModel-1.jpg");
+//        schoolDbModel.setSchoolName("iscoolme");
+//
+//        realm.commitTransaction();
     }
 
     @Override
@@ -98,6 +109,7 @@ public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListe
         School swipedElement = swipeAdapter.getItem(position);
         Toast.makeText(getContext(), "Disliked",
                 Toast.LENGTH_SHORT).show();
+
     }
 
     @Override
@@ -158,6 +170,10 @@ public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListe
             studentNumber.setText(school.getTotal_students());
             advancedPlacement.setText(school.getAdvancedplacement_courses());
             extraCurricular.setText(school.getExtracurricular_activities());
+
+            schoolName.setOnClickListener(this);
+            advancedPlacement.setText("Advanced Placement Courses: \n" + school.getAdvancedplacement_courses());
+            extraCurricular.setText("Extracurricular Activities: \n" + school.getExtracurricular_activities());
 
             schoolPic.setOnClickListener(this);
 
