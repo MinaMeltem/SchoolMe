@@ -35,7 +35,7 @@ public class SplashScreen extends AwesomeSplash {
         configSplash.setTitleSplash("SchoolMe");
         configSplash.setTitleTextColor(R.color.white);
         configSplash.setTitleTextSize(45f);
-        configSplash.setAnimTitleDuration(3000);
+        configSplash.setAnimTitleDuration(1500);
         configSplash.setAnimTitleTechnique(Techniques.FadeIn);
 
     }
