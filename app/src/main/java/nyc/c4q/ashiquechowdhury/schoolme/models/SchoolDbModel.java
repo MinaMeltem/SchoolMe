@@ -7,6 +7,7 @@ public class SchoolDbModel extends RealmObject {
     private String pictureURL;
     private String schoolName;
 
+
     public String getSchoolName() {
         return schoolName;
     }

@@ -15,7 +15,7 @@ import nyc.c4q.ashiquechowdhury.schoolme.models.SchoolDbModel;
  * Created by ashiquechowdhury on 2/18/17.
  */
 public class SchoolAdapter extends RecyclerView.Adapter<SchoolViewHolder> {
-    List<SchoolDbModel> favoriteSchoolDbModels;
+    private List<SchoolDbModel> favoriteSchoolDbModels;
 
     public SchoolAdapter(RealmResults<SchoolDbModel> results) {
         favoriteSchoolDbModels = results;
@@ -37,4 +37,5 @@ public class SchoolAdapter extends RecyclerView.Adapter<SchoolViewHolder> {
     public int getItemCount() {
         return favoriteSchoolDbModels.size();
     }
+
 }
