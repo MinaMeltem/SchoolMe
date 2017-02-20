@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
+
     private BottomNavigationView bottomNavigationView;
 
     @Override
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
                                 inflateFavoritesFragment();
                                 break;
                         }
-                        return false;
+                        return true;
                     }
                 }
         );

@@ -39,7 +39,7 @@ public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListe
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.swipe_view_fragment, container, false);
+        return inflater.inflate(R.layout.home_view_fragment, container, false);
     }
 
     @Override
@@ -168,10 +168,14 @@ public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListe
             schoolName.setText(school.getSchool_name());
             schoolLocation.setText(school.getBoro());
             studentNumber.setText(school.getTotal_students());
-            advancedPlacement.setText(school.getAdvance_placement_courses());
-            extraCurricular.setText(school.getExtra_activities());
+            advancedPlacement.setText(school.getAdvancedplacement_courses());
+            extraCurricular.setText(school.getExtracurricular_activities());
 
             schoolName.setOnClickListener(this);
+            advancedPlacement.setText("Advanced Placement Courses: \n" + school.getAdvancedplacement_courses());
+            extraCurricular.setText("Extracurricular Activities: \n" + school.getExtracurricular_activities());
+
+            schoolPic.setOnClickListener(this);
 
             return convertView;
         }

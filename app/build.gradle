@@ -36,3 +36,10 @@ dependencies {
     compile 'com.github.MFlisar:DragSelectRecyclerView:0.2'
 }
 apply plugin: 'realm-android'
+
+allprojects {
+    repositories {
+        maven { url "https://jitpack.io" }
+        jcenter()
+    }
+}

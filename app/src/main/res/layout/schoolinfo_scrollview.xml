@@ -11,26 +11,41 @@
         <LinearLayout
             android:id="@+id/school_name_info"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="@dimen/school_info_container_padding">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="School Name"
-                android:textColor="#000"
-                android:textSize="@dimen/section_header"
-                android:textStyle="bold" />
+                android:layout_weight="3"
+                android:orientation="vertical"
+                android:padding="@dimen/school_info_container_padding">
 
-            <TextView
-                android:id="@+id/school_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Long Island City High School"
-                android:textColor="#000"
-                android:textSize="@dimen/section_info" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="School Name"
+                    android:textColor="#000"
+                    android:textSize="@dimen/section_header"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/school_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Long Island City High School"
+                    android:textColor="#000"
+                    android:textSize="@dimen/section_info" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/system_icon_height"
+                android:layout_gravity="center_vertical|end"
+                android:layout_weight="1"
+                android:src="@drawable/ic_school_black_24dp" />
         </LinearLayout>
+
 
         <!-- -->
 
@@ -43,24 +58,38 @@
             android:id="@+id/school_email_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/school_info_container_padding">
+            android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="E-mail"
-                android:textColor="#000"
-                android:textSize="@dimen/section_header"
-                android:textStyle="bold" />
+                android:layout_weight="3"
+                android:orientation="vertical"
+                android:padding="@dimen/school_info_container_padding">
 
-            <TextView
-                android:id="@+id/school_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="lic@school.edu"
-                android:textColor="#000"
-                android:textSize="@dimen/section_info" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="E-mail"
+                    android:textColor="#000"
+                    android:textSize="@dimen/section_header"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/school_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="lic@school.edu"
+                    android:textColor="#000"
+                    android:textSize="@dimen/section_info" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/system_icon_height"
+                android:layout_gravity="center_vertical|end"
+                android:layout_weight="1"
+                android:src="@drawable/ic_email_black_24dp" />
         </LinearLayout>
 
         <!-- -->
@@ -74,24 +103,38 @@
             android:id="@+id/school_phone_number_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/school_info_container_padding">
+            android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Phone Number"
-                android:textColor="#000"
-                android:textSize="@dimen/section_header"
-                android:textStyle="bold" />
+                android:layout_weight="3"
+                android:orientation="vertical"
+                android:padding="@dimen/school_info_container_padding">
 
-            <TextView
-                android:id="@+id/school_phone_number"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="(718) 345-6520"
-                android:textColor="#000"
-                android:textSize="@dimen/section_info" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Call School"
+                    android:textColor="#000"
+                    android:textSize="@dimen/section_header"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/school_phone_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="718-345-6520"
+                    android:textColor="#000"
+                    android:textSize="@dimen/section_info" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/system_icon_height"
+                android:layout_gravity="center_vertical|end"
+                android:layout_weight="1"
+                android:src="@drawable/ic_phone_black_24dp" />
         </LinearLayout>
 
         <!-- -->
@@ -105,26 +148,39 @@
             android:id="@+id/school_number_students_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/school_info_container_padding">
+            android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Total Number of Students"
-                android:textColor="#000"
-                android:textSize="@dimen/section_header"
-                android:textStyle="bold" />
+                android:layout_weight="3"
+                android:orientation="vertical"
+                android:padding="@dimen/school_info_container_padding">
 
-            <TextView
-                android:id="@+id/total_students"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="435"
-                android:textColor="#000"
-                android:textSize="@dimen/section_info" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Total Number of Students"
+                    android:textColor="#000"
+                    android:textSize="@dimen/section_header"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/total_students"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="435"
+                    android:textColor="#000"
+                    android:textSize="@dimen/section_info" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/system_icon_height"
+                android:layout_gravity="center_vertical|end"
+                android:layout_weight="1"
+                android:src="@drawable/ic_people_black_24dp" />
         </LinearLayout>
-
 
         <!-- -->
 
@@ -137,32 +193,46 @@
             android:id="@+id/school_address_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/school_info_container_padding">
+            android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Address:"
-                android:textColor="#000"
-                android:textSize="@dimen/section_header"
-                android:textStyle="bold" />
+                android:layout_weight="3"
+                android:orientation="vertical"
+                android:padding="@dimen/school_info_container_padding">
 
-            <TextView
-                android:id="@+id/school_address"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="21-11 Broadway Ave"
-                android:textColor="#000"
-                android:textSize="@dimen/section_info" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Address:"
+                    android:textColor="#000"
+                    android:textSize="@dimen/section_header"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/school_city"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Astoria"
-                android:textColor="#000"
-                android:textSize="@dimen/section_info" />
+                <TextView
+                    android:id="@+id/school_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="21-11 Broadway Ave"
+                    android:textColor="#000"
+                    android:textSize="@dimen/section_info" />
+
+                <TextView
+                    android:id="@+id/school_boro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Astoria"
+                    android:textColor="#000"
+                    android:textSize="@dimen/section_info" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/system_icon_height"
+                android:layout_gravity="center_vertical|end"
+                android:layout_weight="1"
+                android:src="@drawable/ic_map_black_24dp" />
         </LinearLayout>
 
     </LinearLayout>

@@ -9,12 +9,9 @@ import android.transition.ChangeTransform;
 import android.transition.TransitionSet;
 import android.util.AttributeSet;
 
-/**
- * Created by SACC on 2/18/17.
- */
-
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public class DetailsTransition extends TransitionSet {
+
     public DetailsTransition() {
         init();
     }

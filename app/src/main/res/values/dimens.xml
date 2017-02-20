@@ -9,5 +9,6 @@
     <dimen name="default_stack_spacing">12dp</dimen>
     <dimen name="section_header">20sp</dimen>
     <dimen name="section_info">18sp</dimen>
-    <dimen name="school_info_container_padding">7dp</dimen>
+    <dimen name="school_info_container_padding">10dp</dimen>
+    <dimen name="system_icon_height">24dp</dimen>
 </resources>
