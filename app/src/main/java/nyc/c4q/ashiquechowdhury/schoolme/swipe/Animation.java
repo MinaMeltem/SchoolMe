@@ -2,7 +2,7 @@ package nyc.c4q.ashiquechowdhury.schoolme.swipe;
 
 import android.animation.Animator;
 
-public class AnimationUtils {
+public class Animation {
 
     public static abstract class AnimationEndListener implements Animator.AnimatorListener {
         @Override

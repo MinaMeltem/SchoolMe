@@ -12,11 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.FrameLayout;
-import java.util.Random;
 
 import nyc.c4q.ashiquechowdhury.schoolme.R;
 
-public class SwipeStack extends ViewGroup {
+public class HomeSwipeStack extends ViewGroup {
 
     public static final int SWIPE_DIRECTION_BOTH = 0;
     public static final int SWIPE_DIRECTION_ONLY_LEFT = 1;
@@ -39,46 +38,46 @@ public class SwipeStack extends ViewGroup {
     private boolean disableHwAcceleration;
     private boolean isFirstLayout = true;
     private View topView;
-    private SwipeHelper swipeHelper;
+    private HomeSwipeHelper homeSwipeHelper;
     private DataSetObserver dataSetObserver;
     private SwipeStackListener swipeStackListener;
     private SwipeProgressListener progressListener;
 
-    public SwipeStack(Context context) {
+    public HomeSwipeStack(Context context) {
         this(context, null);
     }
 
-    public SwipeStack(Context context, AttributeSet attrs) {
+    public HomeSwipeStack(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public SwipeStack(Context context, AttributeSet attrs, int defStyleAttr) {
+    public HomeSwipeStack(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         readAttributes(attrs);
         initialize();
     }
 
     private void readAttributes(AttributeSet attributeSet) {
-        TypedArray attrs = getContext().obtainStyledAttributes(attributeSet, R.styleable.SwipeStack);
+        TypedArray attrs = getContext().obtainStyledAttributes(attributeSet, R.styleable.HomeSwipeStack);
 
         try {
             allowedSwipeDirections =
-                    attrs.getInt(R.styleable.SwipeStack_allowed_swipe_directions,
+                    attrs.getInt(R.styleable.HomeSwipeStack_allowed_swipe_directions,
                             SWIPE_DIRECTION_BOTH);
             animationDuration =
-                    attrs.getInt(R.styleable.SwipeStack_animation_duration,
+                    attrs.getInt(R.styleable.HomeSwipeStack_animation_duration,
                             DEFAULT_ANIMATION_DURATION);
             numberOfStackedViews =
-                    attrs.getInt(R.styleable.SwipeStack_stack_size, DEFAULT_STACK_SIZE);
+                    attrs.getInt(R.styleable.HomeSwipeStack_stack_size, DEFAULT_STACK_SIZE);
             viewSpacing =
-                    attrs.getDimensionPixelSize(R.styleable.SwipeStack_stack_spacing,
+                    attrs.getDimensionPixelSize(R.styleable.HomeSwipeStack_stack_spacing,
                             getResources().getDimensionPixelSize(R.dimen.default_stack_spacing));
             swipeOpacity =
-                    attrs.getFloat(R.styleable.SwipeStack_swipe_opacity, DEFAULT_SWIPE_OPACITY);
+                    attrs.getFloat(R.styleable.HomeSwipeStack_swipe_opacity, DEFAULT_SWIPE_OPACITY);
             scaleFactor =
-                    attrs.getFloat(R.styleable.SwipeStack_scale_factor, DEFAULT_SCALE_FACTOR);
+                    attrs.getFloat(R.styleable.HomeSwipeStack_scale_factor, DEFAULT_SCALE_FACTOR);
             disableHwAcceleration =
-                    attrs.getBoolean(R.styleable.SwipeStack_disable_hw_acceleration,
+                    attrs.getBoolean(R.styleable.HomeSwipeStack_disable_hw_acceleration,
                             DEFAULT_DISABLE_HW_ACCELERATION);
         } finally {
             attrs.recycle();
@@ -89,9 +88,9 @@ public class SwipeStack extends ViewGroup {
         setClipToPadding(false);
         setClipChildren(false);
 
-        swipeHelper = new SwipeHelper(this);
-        swipeHelper.setAnimationDuration(animationDuration);
-        swipeHelper.setOpacityEnd(swipeOpacity);
+        homeSwipeHelper = new HomeSwipeHelper(this);
+        homeSwipeHelper.setAnimationDuration(animationDuration);
+        homeSwipeHelper.setOpacityEnd(swipeOpacity);
 
         dataSetObserver = new DataSetObserver() {
             @Override
@@ -201,9 +200,9 @@ public class SwipeStack extends ViewGroup {
             float scaleFactor = (float) Math.pow(this.scaleFactor, getChildCount() - x);
 
             if (x == topViewIndex) {
-                swipeHelper.unregisterObservedView();
+                homeSwipeHelper.unregisterObservedView();
                 topView = childView;
-                swipeHelper.registerObservedView(topView, newPositionX, newPositionY);
+                homeSwipeHelper.registerObservedView(topView, newPositionX, newPositionY);
             }
 
             if (!isFirstLayout) {
@@ -309,12 +308,12 @@ public class SwipeStack extends ViewGroup {
 
     public void swipeTopViewToRight() {
         if (getChildCount() == 0) return;
-        swipeHelper.swipeViewToRight();
+        homeSwipeHelper.swipeViewToRight();
     }
 
     public void swipeTopViewToLeft() {
         if (getChildCount() == 0) return;
-        swipeHelper.swipeViewToLeft();
+        homeSwipeHelper.swipeViewToLeft();
     }
 
     public interface SwipeStackListener {

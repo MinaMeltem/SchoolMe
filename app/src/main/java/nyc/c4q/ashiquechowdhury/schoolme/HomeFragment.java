@@ -16,14 +16,13 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import io.realm.Realm;
 import nyc.c4q.ashiquechowdhury.schoolme.models.School;
 import nyc.c4q.ashiquechowdhury.schoolme.models.SchoolDbModel;
 import nyc.c4q.ashiquechowdhury.schoolme.models.SchoolService;
 import nyc.c4q.ashiquechowdhury.schoolme.models.SchoolsResponse;
-import nyc.c4q.ashiquechowdhury.schoolme.swipe.SwipeStack;
+import nyc.c4q.ashiquechowdhury.schoolme.swipe.HomeSwipeStack;
 import nyc.c4q.ashiquechowdhury.schoolme.util.SchoolImageList;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,16 +30,15 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListener {
+public class HomeFragment extends Fragment implements HomeSwipeStack.SwipeStackListener {
 
     private static final String TAG = SchoolsResponse.class.getSimpleName();
     private List<School> schoolList = new ArrayList<>();
-    private SwipeStack swipeStack;
-    private SwipeStackAdapter swipeAdapter;
+    private HomeSwipeStack homeSwipeStack;
+    private SwipeAdapter swipeAdapter;
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-
     }
 
     private School school = new School();
@@ -60,15 +58,15 @@ public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListe
     }
 
     public void setSwipeViews() {
-        swipeStack = (SwipeStack) getView().findViewById(R.id.swipeStack);
-        swipeStack.setListener(this);
+        homeSwipeStack = (HomeSwipeStack) getView().findViewById(R.id.swipeStack);
+        homeSwipeStack.setListener(this);
         fillSchoolList();
     }
 
     private void fillSchoolList() {
         schoolPic = (ImageView) getActivity().findViewById(R.id.school_pic);
-        swipeAdapter = new SwipeStackAdapter(schoolList);
-        swipeStack.setAdapter(swipeAdapter);
+        swipeAdapter = new SwipeAdapter(schoolList);
+        homeSwipeStack.setAdapter(swipeAdapter);
 
         String base_URL = "https://data.cityofnewyork.us";
 
@@ -126,7 +124,7 @@ public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListe
         Toast.makeText(getContext(), R.string.stack_empty, Toast.LENGTH_SHORT).show();
     }
 
-    public class SwipeStackAdapter extends BaseAdapter {
+    public class SwipeAdapter extends BaseAdapter {
 
         private List<School> schoolList;
 
@@ -139,7 +137,7 @@ public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListe
         private TextView schoolRatingTv;
 
 
-        public SwipeStackAdapter(List<School> schoolList) {
+        public SwipeAdapter(List<School> schoolList) {
             this.schoolList = schoolList;
         }
 

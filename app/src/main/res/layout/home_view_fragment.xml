@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     tools:context="nyc.c4q.ashiquechowdhury.schoolme.HomeFragment">
 
-    <nyc.c4q.ashiquechowdhury.schoolme.swipe.SwipeStack
+    <nyc.c4q.ashiquechowdhury.schoolme.swipe.HomeSwipeStack
         android:id="@+id/swipeStack"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
