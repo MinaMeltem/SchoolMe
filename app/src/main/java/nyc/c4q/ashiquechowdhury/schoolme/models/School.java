@@ -8,6 +8,7 @@ public class School implements Parcelable {
     private String school_name;
     private String school_type;
     private String addtl_info1;
+    private String addtl_info2;
     private String advancedplacement_courses;
     private String start_time;
     private String end_time;
@@ -23,20 +24,18 @@ public class School implements Parcelable {
     private String primary_address_line_1;
     private String zip;
     private String boro;
-    private String phone;
-    private String email;
+    private String phone_number;
+    private String school_email;
     private String website;
     private String ell_program;
     private String bus;
     private String subway;
 
     //Constructors
-
     public School() {
     }
 
-    public School(String school_name, String school_type, String addtl_info1, String advancedplacement_courses, String start_time, String end_time, String program_highlights, String sport_boys, String sport_girls, String language_classes, String extracurricular_activities, String grade_span_min, String grade_span_max, String total_students, String partner_hospital, String primary_address_line_1, String zip, String boro, String phone, String email, String website, String ell_program, String bus, String subway) {
-
+    public School(String school_name, String school_type, String addtl_info1, String advancedplacement_courses, String start_time, String end_time, String program_highlights, String sport_boys, String sport_girls, String language_classes, String extracurricular_activities, String grade_span_min, String grade_span_max, String total_students, String partner_hospital, String primary_address_line_1, String zip, String boro, String phone_number, String school_email, String website, String ell_program, String bus, String subway) {
         this.school_name = school_name;
         this.school_type = school_type;
         this.addtl_info1 = addtl_info1;
@@ -55,8 +54,8 @@ public class School implements Parcelable {
         this.primary_address_line_1 = primary_address_line_1;
         this.zip = zip;
         this.boro = boro;
-        this.phone = phone;
-        this.email = email;
+        this.phone_number = phone_number;
+        this.school_email = school_email;
         this.website = website;
         this.ell_program = ell_program;
         this.bus = bus;
@@ -65,10 +64,15 @@ public class School implements Parcelable {
 
     //Getters
 
-    public School(Parcel in) {
+    public School(String s) {
+        this.school_name = s;
+    }
+
+    protected School(Parcel in) {
         school_name = in.readString();
         school_type = in.readString();
         addtl_info1 = in.readString();
+        addtl_info2 = in.readString();
         advancedplacement_courses = in.readString();
         start_time = in.readString();
         end_time = in.readString();
@@ -84,17 +88,25 @@ public class School implements Parcelable {
         primary_address_line_1 = in.readString();
         zip = in.readString();
         boro = in.readString();
-        phone = in.readString();
-        email = in.readString();
+        phone_number = in.readString();
+        school_email = in.readString();
         website = in.readString();
         ell_program = in.readString();
         bus = in.readString();
         subway = in.readString();
     }
 
-    public School(String s) {
-        this.school_name = s;
-    }
+    public static final Creator<School> CREATOR = new Creator<School>() {
+        @Override
+        public School createFromParcel(Parcel in) {
+            return new School(in);
+        }
+
+        @Override
+        public School[] newArray(int size) {
+            return new School[size];
+        }
+    };
 
     public String getSchool_name() {
         return school_name;
@@ -168,12 +180,12 @@ public class School implements Parcelable {
         return boro;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getPhone_number() {
+        return phone_number;
     }
 
-    public String getEmail() {
-        return email;
+    public String getSchool_email() {
+        return school_email;
     }
 
     public String getWebsite() {
@@ -192,7 +204,16 @@ public class School implements Parcelable {
         return subway;
     }
 
-    //Setters
+    public String getAddtl_info2() {
+        return addtl_info2;
+    }
+
+
+    // Setters
+    public void setAddtl_info2(String addtl_info2) {
+        this.addtl_info2 = addtl_info2;
+    }
+
     public void setSchool_name(String school_name) {
         this.school_name = school_name;
     }
@@ -265,12 +286,12 @@ public class School implements Parcelable {
         this.boro = boro;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setPhone_number(String phone_number) {
+        this.phone_number = phone_number;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setSchool_email(String school_email) {
+        this.school_email = school_email;
     }
 
     public void setWebsite(String website) {
@@ -299,6 +320,7 @@ public class School implements Parcelable {
         parcel.writeString(school_name);
         parcel.writeString(school_type);
         parcel.writeString(addtl_info1);
+        parcel.writeString(addtl_info2);
         parcel.writeString(advancedplacement_courses);
         parcel.writeString(start_time);
         parcel.writeString(end_time);
@@ -314,24 +336,12 @@ public class School implements Parcelable {
         parcel.writeString(primary_address_line_1);
         parcel.writeString(zip);
         parcel.writeString(boro);
-        parcel.writeString(phone);
-        parcel.writeString(email);
+        parcel.writeString(phone_number);
+        parcel.writeString(school_email);
         parcel.writeString(website);
         parcel.writeString(ell_program);
         parcel.writeString(bus);
         parcel.writeString(subway);
     }
-
-    public static final Creator<School> CREATOR = new Creator<School>() {
-        @Override
-        public School createFromParcel(Parcel in) {
-            return new School(in);
-        }
-
-        @Override
-        public School[] newArray(int size) {
-            return new School[size];
-        }
-    };
 }
 
