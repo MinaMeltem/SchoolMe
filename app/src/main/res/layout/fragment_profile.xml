@@ -18,8 +18,6 @@
         android:paddingLeft="16dp"
         android:paddingRight="16dp">
         <android.support.v7.widget.CardView
-            android:paddingRight="16dp"
-            android:paddingLeft="16dp"
             android:id="@+id/card_view"
             app:cardBackgroundColor="#fff"
             app:cardElevation="4dp"
@@ -39,10 +37,47 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
                     <TextView
+                        android:paddingRight="16dp"
+                        android:paddingLeft="16dp"
                         android:textColor="#a9a9a9"
                         android:text="Graduating from IS125, Daniel Levigton has had an early talent for the violin and flute. Primarily focusing on music education, he has excelled in his studies and won numerous awards including his own school’s talent show trophy for his excellence with instruments."
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
+                <TextView
+                    android:textSize="45sp"
+                    android:gravity="center"
+                    android:text="GRADES"
+                    android:layout_marginTop="20dp"
+                    android:background="#CE93D8"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp" />
+
+                <TextView
+                    android:textSize="40sp"
+                    android:gravity="center"
+                    android:text="EXTRACURRICULAR"
+                    android:layout_marginTop="10dp"
+                    android:background="#81D4FA"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp" />
+
+                <TextView
+                    android:textSize="45sp"
+                    android:gravity="center"
+                    android:text="ACHIEVMENTS"
+                    android:layout_marginTop="10dp"
+                    android:background="#C5E1A5"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp" />
+
+                <TextView
+                    android:textSize="45sp"
+                    android:gravity="center"
+                    android:text="REFERENCES"
+                    android:layout_marginTop="10dp"
+                    android:background="#FFCC80"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp" />
             </LinearLayout>
         </android.support.v7.widget.CardView>
     </LinearLayout>
