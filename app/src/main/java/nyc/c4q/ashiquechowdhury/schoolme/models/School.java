@@ -10,6 +10,7 @@ public class School implements Parcelable {
     private String addtl_info1;
     private String addtl_info2;
     private String advancedplacement_courses;
+    private String overview_paragraph;
     private String start_time;
     private String end_time;
     private String program_highlights;
@@ -68,12 +69,14 @@ public class School implements Parcelable {
         this.school_name = s;
     }
 
+
     protected School(Parcel in) {
         school_name = in.readString();
         school_type = in.readString();
         addtl_info1 = in.readString();
         addtl_info2 = in.readString();
         advancedplacement_courses = in.readString();
+        overview_paragraph = in.readString();
         start_time = in.readString();
         end_time = in.readString();
         program_highlights = in.readString();
@@ -310,6 +313,14 @@ public class School implements Parcelable {
         this.subway = subway;
     }
 
+    public String getOverview_paragraph() {
+        return overview_paragraph;
+    }
+
+    public void setOverview_paragraph(String overview_paragraph) {
+        this.overview_paragraph = overview_paragraph;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -322,6 +333,7 @@ public class School implements Parcelable {
         parcel.writeString(addtl_info1);
         parcel.writeString(addtl_info2);
         parcel.writeString(advancedplacement_courses);
+        parcel.writeString(overview_paragraph);
         parcel.writeString(start_time);
         parcel.writeString(end_time);
         parcel.writeString(program_highlights);
