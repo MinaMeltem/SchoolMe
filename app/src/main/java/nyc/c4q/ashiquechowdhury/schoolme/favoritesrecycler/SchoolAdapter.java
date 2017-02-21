@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
+import io.realm.Realm;
 import io.realm.RealmResults;
 import nyc.c4q.ashiquechowdhury.schoolme.R;
 import nyc.c4q.ashiquechowdhury.schoolme.models.SchoolDbModel;
@@ -29,8 +30,25 @@ public class SchoolAdapter extends RecyclerView.Adapter<SchoolViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(SchoolViewHolder holder, int position) {
-        holder.bind(favoriteSchoolDbModels.get(position));
+    public void onBindViewHolder(final SchoolViewHolder holder, final int position) {
+        final SchoolDbModel schoolDbModel = favoriteSchoolDbModels.get(position);
+        holder.bind(schoolDbModel);
+
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                Realm.init(holder.itemView.getContext());
+                Realm realm = Realm.getDefaultInstance();
+                realm.executeTransaction(new Realm.Transaction() {
+                    @Override
+                    public void execute(Realm realm) {
+                        schoolDbModel.deleteFromRealm();
+                    }
+                });
+                removeAt(position);
+                return false;
+            }
+        });
     }
 
     @Override
@@ -38,4 +56,8 @@ public class SchoolAdapter extends RecyclerView.Adapter<SchoolViewHolder> {
         return favoriteSchoolDbModels.size();
     }
 
+    public void removeAt(int position) {
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, favoriteSchoolDbModels.size());
+    }
 }

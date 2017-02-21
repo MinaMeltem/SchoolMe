@@ -17,10 +17,13 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.realm.Realm;
 import nyc.c4q.ashiquechowdhury.schoolme.models.School;
+import nyc.c4q.ashiquechowdhury.schoolme.models.SchoolDbModel;
 import nyc.c4q.ashiquechowdhury.schoolme.models.SchoolService;
 import nyc.c4q.ashiquechowdhury.schoolme.models.SchoolsResponse;
 import nyc.c4q.ashiquechowdhury.schoolme.swipe.SwipeStack;
+import nyc.c4q.ashiquechowdhury.schoolme.util.SchoolImageList;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -57,7 +60,7 @@ public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListe
 
     public void setSwipeViews() {
         swipeStack = (SwipeStack) getView().findViewById(R.id.swipeStack);
-//        swipeStack.setListener(this);
+        swipeStack.setListener(this);
         fillSchoolList();
     }
 
@@ -97,15 +100,16 @@ public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListe
         Toast.makeText(getActivity(), "Added to Favorites",
                 Toast.LENGTH_SHORT).show();
 
-//        Realm.init(getActivity().getApplicationContext());
-//        Realm realm = Realm.getDefaultInstance();
-//        realm.beginTransaction();
-//
-//        SchoolDbModel schoolDbModel = realm.createObject(SchoolDbModel.class);
-//        schoolDbModel.setPictureURL("http://weburbanist.com/wp-content/uploads/2009/04/orestad-high-schoolDbModel-1.jpg");
-//        schoolDbModel.setSchoolName("iscoolme");
-//
-//        realm.commitTransaction();
+        Realm.init(getActivity().getApplicationContext());
+        Realm realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
+
+        SchoolDbModel schoolDbModel = realm.createObject(SchoolDbModel.class);
+
+        schoolDbModel.setPictureURL(SchoolImageList.getSchoolImageUrl(swipedElement.getSchool_name()));
+        schoolDbModel.setSchoolName(swipedElement.getSchool_name());
+
+        realm.commitTransaction();
     }
 
     @Override
@@ -114,7 +118,6 @@ public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListe
 
         Toast.makeText(getContext(), "Disliked",
                 Toast.LENGTH_SHORT).show();
-
     }
 
     @Override
@@ -188,7 +191,7 @@ public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListe
                 }
             });
 
-            schoolImageUrl = getSchoolImageUrl(school.getSchool_name());
+            schoolImageUrl = SchoolImageList.getSchoolImageUrl(school.getSchool_name());
 
             Glide.with(getContext()).load(schoolImageUrl).into(schoolPic);
 
