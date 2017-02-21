@@ -1,8 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@color/cardview_light_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/top_image"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background_profile"
+        android:layout_width="match_parent"
+        android:layout_height="180dp" />
+    <LinearLayout
+        android:layout_marginTop="165dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+        <android.support.v7.widget.CardView
+            android:paddingRight="16dp"
+            android:paddingLeft="16dp"
+            android:id="@+id/card_view"
+            app:cardBackgroundColor="#fff"
+            app:cardElevation="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_marginTop="55dp"
+                    android:textColor="#000"
+                    android:textSize="20sp"
+                    android:gravity="center_horizontal"
+                    android:textStyle="bold"
+                    android:text="Daniel Levington"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                    <TextView
+                        android:textColor="#a9a9a9"
+                        android:text="Graduating from IS125, Daniel Levigton has had an early talent for the violin and flute. Primarily focusing on music education, he has excelled in his studies and won numerous awards including his own school’s talent show trophy for his excellence with instruments."
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/profile_image"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        app:civ_border_width="2dp"
+        app:civ_border_color="#FF000000"
+        app:layout_anchor="@id/card_view"
+        app:layout_anchorGravity="top|center"/>
 
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>
