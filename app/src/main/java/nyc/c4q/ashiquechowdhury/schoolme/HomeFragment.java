@@ -136,7 +136,6 @@ public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListe
 
         public SwipeStackAdapter(List<School> schoolList) {
             this.schoolList = schoolList;
-
         }
 
         @Override
@@ -197,11 +196,17 @@ public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListe
             schoolName.setText(school.getSchool_name());
             schoolLocation.setText(school.getBoro());
             studentNumber.setText(school.getTotal_students());
-            advancedPlacement.setText(school.getAdvancedplacement_courses());
-            extraCurricular.setText(school.getExtracurricular_activities());
 
-            advancedPlacement.setText("Advanced Placement Courses: \n" + school.getAdvancedplacement_courses());
-            extraCurricular.setText("Extracurricular Activities: \n" + school.getExtracurricular_activities());
+            if (school.getAdvancedplacement_courses() != null) {
+                advancedPlacement.setText("Advanced Placement Courses: \n" + school.getAdvancedplacement_courses());
+            } else {
+                advancedPlacement.setText("Advanced Placement Courses: \n" + "Information Unavailable");
+            }
+            if (school.getExtracurricular_activities() != null) {
+                extraCurricular.setText("Extracurricular Activities: \n" + school.getExtracurricular_activities());
+            } else {
+                extraCurricular.setText("Extracurricular Activities: \n" + "Information Unavailable");
+            }
 
             return convertView;
         }
@@ -232,16 +237,16 @@ public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListe
                     schoolImageUrl = "https://i.ytimg.com/vi/W6NxVZjmayc/maxresdefault.jpg";
                     break;
                 case "The Urban Assembly School for Emergency Management":
-                    schoolImageUrl = "https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&ved=0ahUKEwjeyuH_q53SAhXDKiYKHREWDeYQjBwIBA&url=https%3A%2F%2Flh3.googleusercontent.com%2F-KUWbxeEsCrk%2FVRwJJuBvw-I%2FAAAAAAABGJ0%2FzJoCSm52SrksXFlxXTp8vl4X-8EmrOk3gCHM%2Fs540%2FDSCF7801.jpg&psig=AFQjCNE9-7W-M2Ler6i3FlB7jZ3t6DYB6w&ust=1487634352264089";
+                    schoolImageUrl = "https://i.ytimg.com/vi/RjNXz3GnBdg/maxresdefault.jpg";
                     break;
                 case "Unity Center for Urban Technologies":
-                    schoolImageUrl = "https://www.google.com/search?q=Unity+Center+for+Urban+Technologies&source=lnms&tbm=isch&sa=X&ved=0ahUKEwiQ44-GrJ3SAhUG0IMKHR99D28Q_AUICigD&biw=1438&bih=800#imgrc=U-XusW600UYDpM:";
+                    schoolImageUrl = "https://i.ytimg.com/vi/GdtvQT70Kqo/maxresdefault.jpg";
                     break;
                 case "Stephen T. Mather Building Arts & Craftsmanship High School":
                     schoolImageUrl = "https://lh3.googleusercontent.com/-Mig8A_nEnto/VVOW1cRDPgI/AAAAAAABLSo/NbNIrMEhkdk36bJGyrkKavKhw4g9p35BQCHM/s540/DSCF8041.jpg";
                     break;
                 case "M.S. 260 Clinton School Writers & Artists":
-                    schoolImageUrl = "https://www.google.com/search?q=M.S.+260+Clinton+School+Writers+%26+Artists&source=lnms&tbm=isch&sa=X&ved=0ahUKEwiG1LqtrJ3SAhVB04MKHaF1DtUQ_AUICigD&biw=1438&bih=800#imgrc=hrG4xQss8U3FFM:";
+                    schoolImageUrl = "https://lh3.googleusercontent.com/-H18w66cyYL8/VhK9J-TpekI/AAAAAAABXq4/3qBbMa62u4A-T__C_G_TXxePln11-UmGACHM/s540/DSCF0216.jpg";
                     break;
                 case "Manhattan Early College School for Advertising":
                     schoolImageUrl = "https://lh3.googleusercontent.com/-m9ZNZlOaaAc/VRwI_i9HD6I/AAAAAAABGJw/U2_sL7L2FCM1H4czdoEINImpMZethg_kwCHM/s540/DSCF7755.jpg";
