@@ -15,6 +15,7 @@ import nyc.c4q.ashiquechowdhury.schoolme.R;
  */
 
 public class SplashScreen extends AwesomeSplash {
+
     @Override
     public void initSplash(ConfigSplash configSplash) {
 
@@ -36,7 +37,6 @@ public class SplashScreen extends AwesomeSplash {
         configSplash.setTitleTextSize(45f);
         configSplash.setAnimTitleDuration(1500);
         configSplash.setAnimTitleTechnique(Techniques.FadeIn);
-
     }
 
     @Override
