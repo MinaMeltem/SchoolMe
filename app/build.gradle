@@ -35,6 +35,7 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.5.1'
     compile 'com.github.MFlisar:DragSelectRecyclerView:0.2'
     compile 'com.github.ViksaaSkool:AwesomeSplash:v1.0.0'
+    compile 'it.sephiroth.android.library.picasso:picasso:2.5.2.4b'
 }
 
 repositories {
