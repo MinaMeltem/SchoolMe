@@ -6,15 +6,21 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.ArrayList;
 
+import nyc.c4q.ashiquechowdhury.schoolme.models.School;
+
+public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
+    private ArrayList<School> schools;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        schools = new ArrayList<>();
 
+        schools = getIntent().getParcelableArrayListExtra("list of schools");
         setupBottomNavigation();
         inflateHomeFragment();
     }
@@ -47,7 +53,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void inflateHomeFragment() {
-        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new HomeFragment()).commit();
+        HomeFragment fragment = new HomeFragment();
+        Bundle bundle = new Bundle();
+        bundle.putParcelableArrayList("list of schools",schools);
+        fragment.setArguments(bundle);
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, fragment).commit();
     }
 
     private void inflateFavoritesFragment() {

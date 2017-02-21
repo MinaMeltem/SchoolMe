@@ -17,4 +17,14 @@
     <string name="stack_empty">No more Schools!</string>
     <string name="github">View on GitHub</string>
     <string name="students">Students</string>
+
+
+    <string-array name="locationspinner">
+        <item>Manhattan</item>
+        <item>Queens</item>
+        <item>Staten Island</item>
+        <item>Bronx</item>
+        <item>Brooklyn</item>
+
+    </string-array>
 </resources>

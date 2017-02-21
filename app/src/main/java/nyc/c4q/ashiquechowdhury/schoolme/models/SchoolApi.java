@@ -25,7 +25,7 @@ public class SchoolApi {
                 .build();
 
         SchoolService service = retrofit.create(SchoolService.class);
-        Call<List<School>> call = service.getResponse();
+        Call<List<School>> call = service.getResponse("");
         call.enqueue(new Callback<List<School>>() {
             @Override
             public void onResponse(Call<List<School>> call, Response<List<School>> response) {

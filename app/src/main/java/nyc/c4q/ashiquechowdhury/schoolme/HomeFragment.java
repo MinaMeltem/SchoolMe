@@ -3,7 +3,6 @@ package nyc.c4q.ashiquechowdhury.schoolme;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,27 +13,36 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import nyc.c4q.ashiquechowdhury.schoolme.models.School;
-import nyc.c4q.ashiquechowdhury.schoolme.models.SchoolService;
 import nyc.c4q.ashiquechowdhury.schoolme.models.SchoolsResponse;
 import nyc.c4q.ashiquechowdhury.schoolme.swipe.SwipeStack;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListener {
 
     private static final String TAG = SchoolsResponse.class.getSimpleName();
-    private List<School> schoolList = new ArrayList<>();
+    private List<School> schoolList;
     private SwipeStack swipeStack;
-    private SwipeStackAdapter swipeAdapter;
     private School school = new School();
     private String schoolImageUrl;
+    private SwipeStackAdapter swipeAdapter;
+    private Bundle bundle;
+
+    public HomeFragment() {
+
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        bundle = getArguments();
+        schoolList = bundle.getParcelableArrayList("list of schools");
+        swipeAdapter = new SwipeStackAdapter(schoolList);
+        swipeAdapter.notifyDataSetChanged();
+        Toast.makeText(getContext(), schoolList.size()+"", Toast.LENGTH_SHORT).show();
+    }
+
 
     @Nullable
     @Override
@@ -50,41 +58,9 @@ public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListe
 
     public void setSwipeViews() {
         swipeStack = (SwipeStack) getView().findViewById(R.id.swipeStack);
-        fillSchoolList();
         swipeStack.setListener(this);
     }
 
-    private void fillSchoolList() {
-
-        swipeAdapter = new SwipeStackAdapter(schoolList);
-        swipeStack.setAdapter(swipeAdapter);
-
-        String base_URL = "https://data.cityofnewyork.us";
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(base_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        SchoolService service = retrofit.create(SchoolService.class);
-
-        Call<List<School>> call = service.getResponse();
-        call.enqueue(new Callback<List<School>>() {
-
-            @Override
-            public void onResponse(Call<List<School>> call, Response<List<School>> response) {
-                schoolList.addAll(response.body());
-                swipeAdapter.notifyDataSetChanged();
-
-                Log.d(TAG, "onResponse: " + response.body().get(1).getBoro());
-            }
-
-            @Override
-            public void onFailure(Call<List<School>> call, Throwable t) {
-                Log.d(TAG, "onFailure: " + t);
-            }
-        });
-    }
 
 
     @Override
