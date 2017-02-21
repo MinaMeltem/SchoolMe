@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -23,27 +22,36 @@ import nyc.c4q.ashiquechowdhury.schoolme.models.School;
  */
 public class SchoolInfoFragment extends Fragment implements View.OnClickListener {
 
-    private static String SCHOOLIMAGE;
     private School school;
-    private ImageView appBarBackground;
     private LinearLayout schoolNameInfo;
     private LinearLayout schoolEmailInfo;
-    private TextView schoolEmailAddress;
     private LinearLayout schoolPhoneInfo;
+    private LinearLayout schoolAddressInfo;
+    private LinearLayout schoolOverviewInfo;
+    private LinearLayout schoolExtraCurricularInfo;
+    private ImageView appBarBackground;
+    private ImageView overviewArrow;
+    private ImageView overviewArrow2;
+    private TextView schoolEmailAddress;
     private TextView schoolPhone;
     private TextView schoolName;
     private TextView schoolTotalStudents;
     private TextView schoolAddress;
     private TextView schoolBoro;
     private TextView schoolNameHeader;
-    private LinearLayout schoolAddressInfo;
+    private TextView schoolOverviewShort;
+    private TextView schoolOverviewFull;
+    private TextView schoolExtraCurricularActivitiesShort;
+    private TextView schoolExtraCurricularActivitiesFull;
+    private TextView schoolRatingTv;
+    private String schoolRating;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle bundle = this.getArguments();
         school = (School) bundle.get("SchoolObject");
-//        SCHOOLIMAGE = bundle.getString("SchoolImage");
+        schoolRating = (String) bundle.get("SchoolRating");
     }
 
     @Nullable
@@ -56,30 +64,47 @@ public class SchoolInfoFragment extends Fragment implements View.OnClickListener
         schoolEmailInfo = (LinearLayout) view.findViewById(R.id.school_email_info);
         schoolPhoneInfo = (LinearLayout) view.findViewById(R.id.school_phone_number_info);
         schoolAddressInfo = (LinearLayout) view.findViewById(R.id.school_address_info);
+        schoolOverviewInfo = (LinearLayout) view.findViewById(R.id.school_overview_info);
+        schoolExtraCurricularInfo = (LinearLayout) view.findViewById(R.id.school_extracurricular_info);
 
         schoolNameHeader = (TextView) view.findViewById(R.id.school_name_header);
         schoolName = (TextView) view.findViewById(R.id.school_name);
+        schoolOverviewShort = (TextView) view.findViewById(R.id.school_overview_short);
+        schoolOverviewFull = (TextView) view.findViewById(R.id.school_overview_full);
         schoolEmailAddress = (TextView) view.findViewById(R.id.school_email);
         schoolPhone = (TextView) view.findViewById(R.id.school_phone_number);
-        schoolTotalStudents = (TextView) view.findViewById(R.id.student_number);
+        schoolTotalStudents = (TextView) view.findViewById(R.id.total_students);
         schoolAddress = (TextView) view.findViewById(R.id.school_address);
         schoolBoro = (TextView) view.findViewById(R.id.school_boro);
+        overviewArrow = (ImageView) view.findViewById(R.id.school_overview_arrow);
+        overviewArrow2 = (ImageView) view.findViewById(R.id.school_overview_arrow2);
+        schoolExtraCurricularActivitiesShort = (TextView) view.findViewById(R.id.school_extracurricular_activities_short);
+        schoolExtraCurricularActivitiesFull = (TextView) view.findViewById(R.id.school_extracurricular_activities_full);
+        schoolRatingTv = (TextView) view.findViewById(R.id.school_rating_tv);
 
-        String something = getSchoolImageUrl(school.getSchool_name());
 
-        Glide.with(view.getContext()).load(something).into(appBarBackground);
+        String schoolImageUrl = getSchoolImageUrl(school.getSchool_name());
+
+        Glide.with(view.getContext()).load(schoolImageUrl).into(appBarBackground);
         schoolName.setText(school.getSchool_name());
         schoolNameHeader.setText(school.getSchool_name());
+        schoolOverviewShort.setText(school.getOverview_paragraph());
+        schoolOverviewFull.setText(school.getOverview_paragraph());
+        schoolExtraCurricularActivitiesShort.setText(school.getExtracurricular_activities());
+        schoolExtraCurricularActivitiesFull.setText(school.getExtracurricular_activities());
         schoolEmailAddress.setText(school.getSchool_email());
         schoolPhone.setText(school.getPhone_number());
-
         schoolAddress.setText(school.getPrimary_address_line_1());
+        schoolTotalStudents.setText(school.getTotal_students());
         schoolBoro.setText(school.getBoro() + ", " + school.getZip());
+        schoolRatingTv.setText(schoolRating);
 
         schoolNameInfo.setOnClickListener(this);
         schoolEmailInfo.setOnClickListener(this);
         schoolPhoneInfo.setOnClickListener(this);
         schoolAddressInfo.setOnClickListener(this);
+        schoolOverviewInfo.setOnClickListener(this);
+        schoolExtraCurricularInfo.setOnClickListener(this);
 
         return view;
     }
@@ -87,8 +112,27 @@ public class SchoolInfoFragment extends Fragment implements View.OnClickListener
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.school_name_info:
-                Toast.makeText(getContext(), "Clicked on School Name", Toast.LENGTH_SHORT).show();
+            case R.id.school_overview_info:
+                if (schoolOverviewShort.getVisibility() == View.VISIBLE) {
+                    schoolOverviewShort.setVisibility(View.GONE);
+                    overviewArrow.setImageResource(R.drawable.ic_arrow_drop_up_black_24dp);
+                    schoolOverviewFull.setVisibility(View.VISIBLE);
+                } else {
+                    schoolOverviewFull.setVisibility(View.GONE);
+                    overviewArrow.setImageResource(R.drawable.ic_arrow_drop_down_black_24dp);
+                    schoolOverviewShort.setVisibility(View.VISIBLE);
+                }
+                break;
+            case R.id.school_extracurricular_info:
+                if (schoolExtraCurricularActivitiesShort.getVisibility() == View.VISIBLE) {
+                    schoolExtraCurricularActivitiesShort.setVisibility(View.GONE);
+                    overviewArrow2.setImageResource(R.drawable.ic_arrow_drop_up_black_24dp);
+                    schoolExtraCurricularActivitiesFull.setVisibility(View.VISIBLE);
+                } else {
+                    schoolExtraCurricularActivitiesFull.setVisibility(View.GONE);
+                    overviewArrow2.setImageResource(R.drawable.ic_arrow_drop_down_black_24dp);
+                    schoolExtraCurricularActivitiesShort.setVisibility(View.VISIBLE);
+                }
                 break;
             case R.id.school_email_info:
                 sendEmailIntent();
@@ -106,73 +150,70 @@ public class SchoolInfoFragment extends Fragment implements View.OnClickListener
         String schoolImageUrl = "";
         switch (school_name) {
             case "Henry Street School for International Studies":
-                schoolImageUrl = "https://lh3.googleusercontent.com/-KyPAUxRDc6o/Tw3bV_WlnSI/AAAAAAAAWg0/wt2iWU0yFscF_I_yo1Xg1SFPMaowWUpogCHM/s540/DSC_0008.JPG";
+                schoolImageUrl = getString(R.string.henry_street_school);
                 break;
             case "University Neighborhood High School":
-                schoolImageUrl = "https://lh3.googleusercontent.com/-p8HAoGfe0YA/T3Ikv2FzsMI/AAAAAAAAgsg/MoFFtwgnotQ-jp-A3WbnpQP_mXHWXcMOQCHM/s540/DSC_0028.JPG";
+                schoolImageUrl = getString(R.string.university_neighborhood_hs);
                 break;
             case "East Side Community School":
-                schoolImageUrl = "https://lh3.googleusercontent.com/-kAZqObmM1Iw/T_EkbgylrBI/AAAAAAAAuNw/A6yBJyP0LuA_TWgh-MUe4nGoR8D6SPfEACHM/s540/IMG_4202.JPG";
+                schoolImageUrl = getString(R.string.east_side_community_school);
                 break;
             case "Marta Valle High School":
-                schoolImageUrl = "https://i.ytimg.com/vi/qcW5cY5FxQk/maxresdefault.jpg";
+                schoolImageUrl = getString(R.string.marta_valle_hs);
                 break;
             case "New Explorations into Science, Technology and Math High School":
-                schoolImageUrl = "http://schools.nyc.gov/NR/rdonlyres/00E90A5C-EA6E-4F69-99C5-9BF363252827/19789/group3.JPG";
+                schoolImageUrl = getString(R.string.new_explorations_into_science);
                 break;
             case "Bard High School Early College":
-                schoolImageUrl = "https://lh3.googleusercontent.com/-wHqKbqfo7KU/TctEYnR6THI/AAAAAAAACYU/O798rj8993ACSdKwgOyUwRo3dkvVOAxpwCHM/s540/IMG_0319.JPG";
+                schoolImageUrl = getString(R.string.bard_hs_early_college);
                 break;
             case "47 The American Sign Language and English Secondary School":
-                schoolImageUrl = "https://i.ytimg.com/vi/W6NxVZjmayc/maxresdefault.jpg";
+                schoolImageUrl = getString(R.string.the_american_sign_language);
                 break;
             case "The Urban Assembly School for Emergency Management":
-                schoolImageUrl = "https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&ved=0ahUKEwjeyuH_q53SAhXDKiYKHREWDeYQjBwIBA&url=https%3A%2F%2Flh3.googleusercontent.com%2F-KUWbxeEsCrk%2FVRwJJuBvw-I%2FAAAAAAABGJ0%2FzJoCSm52SrksXFlxXTp8vl4X-8EmrOk3gCHM%2Fs540%2FDSCF7801.jpg&psig=AFQjCNE9-7W-M2Ler6i3FlB7jZ3t6DYB6w&ust=1487634352264089";
+                schoolImageUrl = getString(R.string.urban_assembly_school_emergency);
                 break;
             case "Unity Center for Urban Technologies":
-                schoolImageUrl = "https://www.google.com/search?q=Unity+Center+for+Urban+Technologies&source=lnms&tbm=isch&sa=X&ved=0ahUKEwiQ44-GrJ3SAhUG0IMKHR99D28Q_AUICigD&biw=1438&bih=800#imgrc=U-XusW600UYDpM:";
+                schoolImageUrl = getString(R.string.unity_center_for_urban_tech);
                 break;
             case "Stephen T. Mather Building Arts & Craftsmanship High School":
-                schoolImageUrl = "https://lh3.googleusercontent.com/-Mig8A_nEnto/VVOW1cRDPgI/AAAAAAABLSo/NbNIrMEhkdk36bJGyrkKavKhw4g9p35BQCHM/s540/DSCF8041.jpg";
+                schoolImageUrl = getString(R.string.stephen_t_mather);
                 break;
             case "M.S. 260 Clinton School Writers & Artists":
-                schoolImageUrl = "https://www.google.com/search?q=M.S.+260+Clinton+School+Writers+%26+Artists&source=lnms&tbm=isch&sa=X&ved=0ahUKEwiG1LqtrJ3SAhVB04MKHaF1DtUQ_AUICigD&biw=1438&bih=800#imgrc=hrG4xQss8U3FFM:";
+                schoolImageUrl = getString(R.string.clinton_school_writers);
                 break;
             case "Manhattan Early College School for Advertising":
-                schoolImageUrl = "https://lh3.googleusercontent.com/-m9ZNZlOaaAc/VRwI_i9HD6I/AAAAAAABGJw/U2_sL7L2FCM1H4czdoEINImpMZethg_kwCHM/s540/DSCF7755.jpg";
+                schoolImageUrl = getString(R.string.manhattan_early_college);
                 break;
             case "Urban Assembly Maker Academy":
-                schoolImageUrl = "https://i.ytimg.com/vi/2xVh_vVKCrM/maxresdefault.jpg";
+                schoolImageUrl = getString(R.string.urban_assembly_maker_academy);
                 break;
             case "Food and Finance High School":
-                schoolImageUrl = "http://cms.quallsbenson.com/uploads/dsc_0012.jpg";
+                schoolImageUrl = getString(R.string.food_and_finance);
                 break;
             case "Essex Street Academy":
-                schoolImageUrl = "https://lh3.googleusercontent.com/-sLN0IcZ0y-E/TrrmsFqIMII/AAAAAAAAPx0/dad1ns8_LakrB5K02VE0eQ1PMniwyXzvgCHM/s540/IMG_1356.JPG";
+                schoolImageUrl = getString(R.string.essex_street_academy);
                 break;
             case "High School of Hospitality Management":
-                schoolImageUrl = "https://lh3.googleusercontent.com/-NTNZvmaW_8M/T895zCu12QI/AAAAAAAAswI/ovMaceZJP_It2WhmP_G6flwd_TfcxpSMQCHM/s540/DSC_0100.JPG";
+                schoolImageUrl = getString(R.string.hs_of_hospitality_management);
                 break;
             case "Pace High School":
-                schoolImageUrl = "http://schools.nyc.gov/NR/rdonlyres/D16BB8DC-10F5-4F00-95A2-E32C937ADBC4/28372/school1.JPG";
+                schoolImageUrl = getString(R.string.pace_hs);
                 break;
             case "Urban Assembly School of Design and Construction, The":
-                schoolImageUrl = "https://i.ytimg.com/vi/WWbJKKTnqag/maxresdefault.jpg";
+                schoolImageUrl = getString(R.string.urban_assembly_school_design);
                 break;
             case "Facing History School, The":
-                schoolImageUrl = "https://lh3.googleusercontent.com/-nVzfDY_OKzo/T8UAvxQ1NqI/AAAAAAAArVI/j3O31npnaow2s5GsKRWC8_J1ptny6WhowCHM/s540/DSC_0086.JPG";
+                schoolImageUrl = getString(R.string.facing_history_school);
                 break;
             case "Urban Assembly Academy of Government and Law, The":
-                schoolImageUrl = "https://s3.amazonaws.com/urbanassembly/schools/Government-and-Law.jpg";
+                schoolImageUrl = getString(R.string.urban_assembly_academy_government);
                 break;
         }
         return schoolImageUrl;
     }
 
     private void sendAddressIntent() {
-
-        Toast.makeText(getContext(), "Send Address Intent", Toast.LENGTH_SHORT).show();
-
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);
         intent.setData(Uri.parse("geo:0,0?q=" + Uri.encode(school.getSchool_name())));

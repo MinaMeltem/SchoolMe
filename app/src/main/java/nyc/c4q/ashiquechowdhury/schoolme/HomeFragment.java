@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import nyc.c4q.ashiquechowdhury.schoolme.models.School;
 import nyc.c4q.ashiquechowdhury.schoolme.models.SchoolService;
@@ -132,6 +133,7 @@ public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListe
         private TextView studentNumber;
         private TextView advancedPlacement;
         private TextView extraCurricular;
+        private TextView schoolRatingTv;
 
 
         public SwipeStackAdapter(List<School> schoolList) {
@@ -166,15 +168,27 @@ public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListe
             studentNumber = (TextView) convertView.findViewById(R.id.student_number);
             advancedPlacement = (TextView) convertView.findViewById(R.id.advanced_placement);
             extraCurricular = (TextView) convertView.findViewById(R.id.extracurricular);
+            schoolRatingTv = (TextView) convertView.findViewById(R.id.school_rating);
+
+            String schoolRating = null;
+            if (position % 3 == 0) {
+                schoolRating = "93%";
+            } else if (position % 2 == 0) {
+                schoolRating = "96%";
+            } else {
+                schoolRating = "97%";
+            }
+            schoolRatingTv.setText(schoolRating);
 
             school = schoolList.get(position);
+            final String finalSchoolRating = schoolRating;
             schoolPic.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View view) {
                     Bundle args = new Bundle();
                     args.putParcelable("SchoolObject", schoolList.get(position));
-//            args.putString("SchoolImage", schoolImageUrl);
+                    args.putString("SchoolRating", finalSchoolRating);
 
                     SchoolInfoFragment schoolInfoFragment = new SchoolInfoFragment();
                     schoolInfoFragment.setArguments(args);
@@ -216,64 +230,64 @@ public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListe
             String schoolImageUrl = "";
             switch (school_name) {
                 case "Henry Street School for International Studies":
-                    schoolImageUrl = "https://lh3.googleusercontent.com/-KyPAUxRDc6o/Tw3bV_WlnSI/AAAAAAAAWg0/wt2iWU0yFscF_I_yo1Xg1SFPMaowWUpogCHM/s540/DSC_0008.JPG";
+                    schoolImageUrl = getString(R.string.henry_street_school);
                     break;
                 case "University Neighborhood High School":
-                    schoolImageUrl = "https://lh3.googleusercontent.com/-p8HAoGfe0YA/T3Ikv2FzsMI/AAAAAAAAgsg/MoFFtwgnotQ-jp-A3WbnpQP_mXHWXcMOQCHM/s540/DSC_0028.JPG";
+                    schoolImageUrl = getString(R.string.university_neighborhood_hs);
                     break;
                 case "East Side Community School":
-                    schoolImageUrl = "https://lh3.googleusercontent.com/-kAZqObmM1Iw/T_EkbgylrBI/AAAAAAAAuNw/A6yBJyP0LuA_TWgh-MUe4nGoR8D6SPfEACHM/s540/IMG_4202.JPG";
+                    schoolImageUrl = getString(R.string.east_side_community_school);
                     break;
                 case "Marta Valle High School":
-                    schoolImageUrl = "https://i.ytimg.com/vi/qcW5cY5FxQk/maxresdefault.jpg";
+                    schoolImageUrl = getString(R.string.marta_valle_hs);
                     break;
                 case "New Explorations into Science, Technology and Math High School":
-                    schoolImageUrl = "http://schools.nyc.gov/NR/rdonlyres/00E90A5C-EA6E-4F69-99C5-9BF363252827/19789/group3.JPG";
+                    schoolImageUrl = getString(R.string.new_explorations_into_science);
                     break;
                 case "Bard High School Early College":
-                    schoolImageUrl = "https://lh3.googleusercontent.com/-wHqKbqfo7KU/TctEYnR6THI/AAAAAAAACYU/O798rj8993ACSdKwgOyUwRo3dkvVOAxpwCHM/s540/IMG_0319.JPG";
+                    schoolImageUrl = getString(R.string.bard_hs_early_college);
                     break;
                 case "47 The American Sign Language and English Secondary School":
-                    schoolImageUrl = "https://i.ytimg.com/vi/W6NxVZjmayc/maxresdefault.jpg";
+                    schoolImageUrl = getString(R.string.the_american_sign_language);
                     break;
                 case "The Urban Assembly School for Emergency Management":
-                    schoolImageUrl = "https://i.ytimg.com/vi/RjNXz3GnBdg/maxresdefault.jpg";
+                    schoolImageUrl = getString(R.string.urban_assembly_school_emergency);
                     break;
                 case "Unity Center for Urban Technologies":
-                    schoolImageUrl = "https://i.ytimg.com/vi/GdtvQT70Kqo/maxresdefault.jpg";
+                    schoolImageUrl = getString(R.string.unity_center_for_urban_tech);
                     break;
                 case "Stephen T. Mather Building Arts & Craftsmanship High School":
-                    schoolImageUrl = "https://lh3.googleusercontent.com/-Mig8A_nEnto/VVOW1cRDPgI/AAAAAAABLSo/NbNIrMEhkdk36bJGyrkKavKhw4g9p35BQCHM/s540/DSCF8041.jpg";
+                    schoolImageUrl = getString(R.string.stephen_t_mather);
                     break;
                 case "M.S. 260 Clinton School Writers & Artists":
-                    schoolImageUrl = "https://lh3.googleusercontent.com/-H18w66cyYL8/VhK9J-TpekI/AAAAAAABXq4/3qBbMa62u4A-T__C_G_TXxePln11-UmGACHM/s540/DSCF0216.jpg";
+                    schoolImageUrl = getString(R.string.clinton_school_writers);
                     break;
                 case "Manhattan Early College School for Advertising":
-                    schoolImageUrl = "https://lh3.googleusercontent.com/-m9ZNZlOaaAc/VRwI_i9HD6I/AAAAAAABGJw/U2_sL7L2FCM1H4czdoEINImpMZethg_kwCHM/s540/DSCF7755.jpg";
+                    schoolImageUrl = getString(R.string.manhattan_early_college);
                     break;
                 case "Urban Assembly Maker Academy":
-                    schoolImageUrl = "https://i.ytimg.com/vi/2xVh_vVKCrM/maxresdefault.jpg";
+                    schoolImageUrl = getString(R.string.urban_assembly_maker_academy);
                     break;
                 case "Food and Finance High School":
-                    schoolImageUrl = "http://cms.quallsbenson.com/uploads/dsc_0012.jpg";
+                    schoolImageUrl = getString(R.string.food_and_finance);
                     break;
                 case "Essex Street Academy":
-                    schoolImageUrl = "https://lh3.googleusercontent.com/-sLN0IcZ0y-E/TrrmsFqIMII/AAAAAAAAPx0/dad1ns8_LakrB5K02VE0eQ1PMniwyXzvgCHM/s540/IMG_1356.JPG";
+                    schoolImageUrl = getString(R.string.essex_street_academy);
                     break;
                 case "High School of Hospitality Management":
-                    schoolImageUrl = "https://lh3.googleusercontent.com/-NTNZvmaW_8M/T895zCu12QI/AAAAAAAAswI/ovMaceZJP_It2WhmP_G6flwd_TfcxpSMQCHM/s540/DSC_0100.JPG";
+                    schoolImageUrl = getString(R.string.hs_of_hospitality_management);
                     break;
                 case "Pace High School":
-                    schoolImageUrl = "http://schools.nyc.gov/NR/rdonlyres/D16BB8DC-10F5-4F00-95A2-E32C937ADBC4/28372/school1.JPG";
+                    schoolImageUrl = getString(R.string.pace_hs);
                     break;
                 case "Urban Assembly School of Design and Construction, The":
-                    schoolImageUrl = "https://i.ytimg.com/vi/WWbJKKTnqag/maxresdefault.jpg";
+                    schoolImageUrl = getString(R.string.urban_assembly_school_design);
                     break;
                 case "Facing History School, The":
-                    schoolImageUrl = "https://lh3.googleusercontent.com/-nVzfDY_OKzo/T8UAvxQ1NqI/AAAAAAAArVI/j3O31npnaow2s5GsKRWC8_J1ptny6WhowCHM/s540/DSC_0086.JPG";
+                    schoolImageUrl = getString(R.string.facing_history_school);
                     break;
                 case "Urban Assembly Academy of Government and Law, The":
-                    schoolImageUrl = "https://s3.amazonaws.com/urbanassembly/schools/Government-and-Law.jpg";
+                    schoolImageUrl = getString(R.string.urban_assembly_academy_government);
                     break;
             }
             return schoolImageUrl;
