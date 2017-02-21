@@ -25,6 +25,6 @@ public class ProfileFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        Glide.with(getContext()).load(R.raw.calvin).into(gifImage);
+        Glide.with(getContext()).load(R.raw.calvin).asGif().into(gifImage);
     }
 }
