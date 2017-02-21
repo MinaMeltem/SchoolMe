@@ -167,16 +167,26 @@ public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListe
             schoolImageUrl = getSchoolImageUrl(school.getSchool_name());
             Glide.with(getContext()).load(schoolImageUrl).into(schoolPic);
 
-
             schoolName.setText(school.getSchool_name());
             schoolLocation.setText(school.getBoro());
             studentNumber.setText(school.getTotal_students());
-            advancedPlacement.setText(school.getAdvancedplacement_courses());
-            extraCurricular.setText(school.getExtracurricular_activities());
 
-            schoolName.setOnClickListener(this);
-            advancedPlacement.setText("Advanced Placement Courses: \n" + school.getAdvancedplacement_courses());
-            extraCurricular.setText("Extracurricular Activities: \n" + school.getExtracurricular_activities());
+
+            String advancedPlacementCourses;
+            advancedPlacementCourses = school.getAdvancedplacement_courses();
+            if (advancedPlacementCourses == null) {
+                advancedPlacement.setText("Advanced Placement Courses: \n" + "Not Available");
+            } else {
+                advancedPlacement.setText("Advanced Placement Courses: \n" + advancedPlacementCourses);
+            }
+
+            String extraCurricularActivies;
+            extraCurricularActivies = school.getExtracurricular_activities();
+            if (extraCurricularActivies == null) {
+                extraCurricular.setText("Extracurricular Activities: \n" + "Not Available");
+            } else {
+                extraCurricular.setText("Extracurricular Activities: \n" + extraCurricularActivies);
+            }
 
             schoolPic.setOnClickListener(this);
 
@@ -187,7 +197,6 @@ public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListe
         public void onClick(View view) {
             Bundle args = new Bundle();
             args.putParcelable("SchoolObject", school);
-//            args.putString("SchoolImage", schoolImageUrl);
 
             SchoolInfoFragment schoolInfoFragment = new SchoolInfoFragment();
             schoolInfoFragment.setArguments(args);

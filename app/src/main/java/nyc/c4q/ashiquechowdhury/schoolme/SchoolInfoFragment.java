@@ -36,6 +36,7 @@ public class SchoolInfoFragment extends Fragment implements View.OnClickListener
     private TextView schoolAddress;
     private TextView schoolBoro;
     private TextView schoolNameHeader;
+    private LinearLayout schoolAddressInfo;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,6 +55,7 @@ public class SchoolInfoFragment extends Fragment implements View.OnClickListener
         schoolNameInfo = (LinearLayout) view.findViewById(R.id.school_name_info);
         schoolEmailInfo = (LinearLayout) view.findViewById(R.id.school_email_info);
         schoolPhoneInfo = (LinearLayout) view.findViewById(R.id.school_phone_number_info);
+        schoolAddressInfo = (LinearLayout) view.findViewById(R.id.school_address_info);
 
         schoolNameHeader = (TextView) view.findViewById(R.id.school_name_header);
         schoolName = (TextView) view.findViewById(R.id.school_name);
@@ -68,19 +70,16 @@ public class SchoolInfoFragment extends Fragment implements View.OnClickListener
         Glide.with(view.getContext()).load(something).into(appBarBackground);
         schoolName.setText(school.getSchool_name());
         schoolNameHeader.setText(school.getSchool_name());
-        schoolEmailAddress.setText(school.getEmail());
-        schoolPhone.setText(school.getPhone());
-//        if (school.getTotal_students() != null) {
-//            schoolTotalStudents.setText(school.getTotal_students());
-//        } else {
-//            schoolTotalStudents.setText("Information Unavailable");
-//        }
+        schoolEmailAddress.setText(school.getSchool_email());
+        schoolPhone.setText(school.getPhone_number());
+
         schoolAddress.setText(school.getPrimary_address_line_1());
-        schoolBoro.setText(school.getBoro());
+        schoolBoro.setText(school.getBoro() + ", " + school.getZip());
 
         schoolNameInfo.setOnClickListener(this);
         schoolEmailInfo.setOnClickListener(this);
         schoolPhoneInfo.setOnClickListener(this);
+        schoolAddressInfo.setOnClickListener(this);
 
         return view;
     }
@@ -174,21 +173,15 @@ public class SchoolInfoFragment extends Fragment implements View.OnClickListener
 
         Toast.makeText(getContext(), "Send Address Intent", Toast.LENGTH_SHORT).show();
 
-//        Intent intent = new Intent();
-//        intent.setAction(Intent.ACTION_VIEW);
-//        String data = String.format("geo:%s,%s", latitude, longitude);
-//        if (zoomLevel != null) {
-//            data = String.format("%s?z=%s", data, zoomLevel);
-//        }
-//        intent.setData(Uri.parse(data));
-//        if (intent.resolveActivity(getContext().getPackageManager()) != null) {
-//            startActivity(intent);
-//        }
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse("geo:0,0?q=" + Uri.encode(school.getSchool_name())));
+        if (intent.resolveActivity(getContext().getPackageManager()) != null) {
+            startActivity(intent);
+        }
     }
 
     private void sendPhoneNumberIntent() {
-        Toast.makeText(getContext(), "YOOO", Toast.LENGTH_SHORT).show();
-
         String phoneNumber = (String) schoolPhone.getText();
         Intent callIntent = new Intent(Intent.ACTION_DIAL);
         callIntent.setData(Uri.parse("tel:" + phoneNumber));
