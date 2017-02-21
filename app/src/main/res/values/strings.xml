@@ -37,4 +37,11 @@
     <string name="urban_assembly_school_design">https://i.ytimg.com/vi/WWbJKKTnqag/maxresdefault.jpg</string>
     <string name="facing_history_school">https://lh3.googleusercontent.com/-nVzfDY_OKzo/T8UAvxQ1NqI/AAAAAAAArVI/j3O31npnaow2s5GsKRWC8_J1ptny6WhowCHM/s540/DSC_0086.JPG</string>
     <string name="urban_assembly_academy_government">https://s3.amazonaws.com/urbanassembly/schools/Government-and-Law.jpg</string>
+    <string-array name="locationspinner">
+        <item>Brooklyn</item>
+        <item>Bronx</item>
+        <item>Queens</item>
+        <item>Manhattan</item>
+        <item>Staten Island</item>
+    </string-array>
 </resources>
