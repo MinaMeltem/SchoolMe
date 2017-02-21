@@ -7,6 +7,7 @@ import com.viksaa.sssplash.lib.activity.AwesomeSplash;
 import com.viksaa.sssplash.lib.cnst.Flags;
 import com.viksaa.sssplash.lib.model.ConfigSplash;
 
+import nyc.c4q.ashiquechowdhury.schoolme.FilterActivity;
 import nyc.c4q.ashiquechowdhury.schoolme.MainActivity;
 import nyc.c4q.ashiquechowdhury.schoolme.R;
 
@@ -41,7 +42,7 @@ public class SplashScreen extends AwesomeSplash {
 
     @Override
     public void animationsFinished() {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, FilterActivity.class);
         startActivity(intent);
         finish();
     }
