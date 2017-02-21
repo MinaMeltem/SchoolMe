@@ -185,8 +185,6 @@ public class HomeFragment extends Fragment implements SwipeStack.SwipeStackListe
                             .replace(R.id.frame_layout, schoolInfoFragment)
                             .addToBackStack(null)
                             .commit();
-                    System.out.println(position);
-
                     school.getAddtl_info1();
                 }
             });
